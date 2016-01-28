@@ -1,0 +1,421 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Vagrant Mesos Cluster | Mesos Cluster</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../tools/index.html" />
+    
+    
+    <link rel="prev" href="../roles/docker-engine-auth/index.html" />
+    
+
+        <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script>
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3"
+        data-chapter-title="Vagrant Mesos Cluster"
+        data-filepath="vagrant/README.md"
+        data-basepath=".."
+        data-revision="Mon Jan 11 2016 10:14:19 GMT-0500 (EST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+                
+                <li>
+                    <a href="https://github.com/ypg-data/mesos-stack/issues" target="blank" class="custom-link">Issues</a>
+                </li>
+            
+                
+                <li>
+                    <a href="https://github.com/ypg-data/mesos-stack" target="blank" class="custom-link">Source Code</a>
+                </li>
+            
+            
+
+            
+            <li class="divider"></li>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="CONTRIBUTING.html">
+            
+                
+                    <a href="../CONTRIBUTING.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Contributing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="roles/index.html">
+            
+                
+                    <a href="../roles/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Roles
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="roles/mesos/index.html">
+            
+                
+                    <a href="../roles/mesos/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Mesos
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="roles/mesos-agent/index.html">
+            
+                
+                    <a href="../roles/mesos-agent/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Mesos Agent
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="roles/mesos-dns/index.html">
+            
+                
+                    <a href="../roles/mesos-dns/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Mesos DNS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="roles/dcos-cli/index.html">
+            
+                
+                    <a href="../roles/dcos-cli/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        DCOS CLI
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="roles/docker-registry/index.html">
+            
+                
+                    <a href="../roles/docker-registry/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Docker Registry
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="roles/docker-engine-auth/index.html">
+            
+                
+                    <a href="../roles/docker-engine-auth/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Private Docker Registry Authentication
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="3" data-path="vagrant/index.html">
+            
+                
+                    <a href="../vagrant/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Vagrant Mesos Cluster
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="tools/index.html">
+            
+                
+                    <a href="../tools/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Build Tools
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Mesos Cluster</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="running-mesos-cluster-with-vagrant">Running Mesos Cluster with Vagrant</h1>
+<!-- toc -->
+<ul>
+<li><a href="#setting-up-the-cluster">Setting up the cluster</a></li>
+<li><a href="#using-the-cluster">Using the cluster</a></li>
+<li><a href="#vagrant-cheat-sheet">Vagrant cheat sheet</a></li>
+</ul>
+<!-- toc stop -->
+<p>The local cluster will have three nodes:</p>
+<div class="mermaid">
+graph TB;
+
+subgraph mesos-node-0 - 10.141.141.10
+  Zookeeper
+  MarathonLB[Marathon LB / HAProxy]
+  Marathon
+  Chronos
+  MesosMaster[Mesos Master]
+  MesosAgent0[Mesos Agent #0]
+  MesosDNS[Mesos DNS]
+
+  Zookeeper --- Marathon
+  Zookeeper --- MesosMaster
+  MarathonLB --- Marathon
+  Marathon --- MesosMaster
+  Chronos --- MesosMaster
+  MesosMaster --- MesosAgent0
+end
+
+subgraph mesos-node-1 - 10.141.141.11
+  MesosMaster --- MesosAgent1[Mesos Agent #1]
+end
+
+subgraph mesos-node-2 - 10.141.141.12
+  MesosMaster --- MesosAgent2[Mesos Agent #2]
+end
+</div>
+
+<h2 id="setting-up-the-cluster">Setting up the cluster</h2>
+<p>First, bring up the local cluster VMs:</p>
+<pre><code>$ vagrant up
+</code></pre><p>Then install and configure the DCOS CLI:</p>
+<pre><code>$ pip install dcoscli
+$ dcos config set core.email no-auth@example.com
+$ dcos config set core.reporting false
+$ dcos config set core.mesos_master_url http://10.141.141.10:5050
+$ dcos config set marathon.url http://10.141.141.10:8080
+$ dcos config set package.cache ~/.dcos/cache
+$ dcos config set package.sources &quot;https://github.com/mesosphere/universe/archive/version-1.x.zip&quot; ]&apos;
+</code></pre><p>Finally, add the following to <code>/etc/hosts</code> if you plan to deploy example apps
+descriptors located inside the <code>marathon</code> directory:</p>
+<pre><code class="lang-sh"><span class="hljs-comment"># Proxied domains should point to the primary node</span>
+<span class="hljs-number">10.141</span>.<span class="hljs-number">141.10</span>   nginx.mesos.dev
+</code></pre>
+<h2 id="using-the-cluster">Using the cluster</h2>
+<p>The main user interfaces are:</p>
+<ul>
+<li>Mesos:    <a href="http://10.141.141.10:5050/" target="_blank">http://10.141.141.10:5050/</a></li>
+<li>Marathon: <a href="http://10.141.141.10:8080/" target="_blank">http://10.141.141.10:8080/</a></li>
+<li>Chronos:  <a href="http://10.141.141.10:4400/" target="_blank">http://10.141.141.10:4400/</a></li>
+</ul>
+<p>To deploy applications use the DCOS CLI and the Marathon task descriptors in the
+<code>marathon</code> folder:</p>
+<pre><code>$ dcos marathon app add marathon/nginx.json
+</code></pre><p>Check that nginx is running:</p>
+<pre><code>$ dcos marathon task list
+APP        HEALTHY          STARTED               HOST      ID
+/nginx       True   2015-11-12T04:04:08.872Z  mesos-node-0  nginx.6bf52812-88f2-11e5-a52e-0242bb5202d1
+</code></pre><p>Once the application has been started, open <a href="https://nginx.mesos.dev/" target="_blank">https://nginx.mesos.dev/</a>.</p>
+<p>To undeploy nginx run:</p>
+<pre><code>$ dcos marathon app remove nginx
+</code></pre><p>See <code>dcos marathon -h</code> for more commands.</p>
+<h2 id="vagrant-cheat-sheet">Vagrant cheat sheet</h2>
+<p>The following commands gives a quick intro to Vagrant</p>
+<pre><code class="lang-sh">vagrant ssh mesos-node-<span class="hljs-number">0</span>   <span class="hljs-comment"># SSH into a machine</span>
+vagrant provision          <span class="hljs-comment"># Rerun Ansible scripts</span>
+vagrant halt               <span class="hljs-comment"># Stop all cluster VMs</span>
+vagrant destroy            <span class="hljs-comment"># Physically delete VM files</span>
+</code></pre>
+<p>For additional help run <code>vagrant help</code>.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../roles/docker-engine-auth/index.html" class="navigation navigation-prev " aria-label="Previous page: Private Docker Registry Authentication"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../tools/index.html" class="navigation navigation-next " aria-label="Next page: Build Tools"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toc":{},"mermaid-2":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
