@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Error Handling | Eigenflow</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../devops/index.html" />
+    
+    
+    <link rel="prev" href="../doc/recovery.html" />
+    
+
+        <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script>
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="5"
+        data-chapter-title="Error Handling"
+        data-filepath="doc/error-handling.md"
+        data-basepath=".."
+        data-revision="Thu Jan 28 2016 15:05:47 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+                
+                <li>
+                    <a href="https://github.com/ypg-data/eigenflow" target="blank" class="custom-link">Project</a>
+                </li>
+            
+                
+                <li>
+                    <a href="https://github.com/ypg-data/eigenflow/issues" target="blank" class="custom-link">Issues</a>
+                </li>
+            
+            
+
+            
+            <li class="divider"></li>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="doc/getting-started.html">
+            
+                
+                    <a href="../doc/getting-started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="doc/process-stages.html">
+            
+                
+                    <a href="../doc/process-stages.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Process Stages
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="doc/time-management.html">
+            
+                
+                    <a href="../doc/time-management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Time Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="doc/recovery.html">
+            
+                
+                    <a href="../doc/recovery.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Recovery
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="5" data-path="doc/error-handling.html">
+            
+                
+                    <a href="../doc/error-handling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Error Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="devops/index.html">
+            
+                
+                    <a href="../devops/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        DevOps
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="CONTRIBUTING.html">
+            
+                
+                    <a href="../CONTRIBUTING.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Contributing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Eigenflow</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="error-handling">Error Handling</h1>
+<p>By default, if no strategy is defined, when an exception happens the process switches to the <code>failed</code> stage remembering
+the stage it was trying to execute and exits.</p>
+<p>The simplest possible strategy would be: no matter what happens retry <em>n</em>-times with given interval:</p>
+<pre><code class="lang-scala"><span class="hljs-type">SomeStage</span> {
+  ...
+} retry (<span class="hljs-number">1.</span>minute, <span class="hljs-number">10</span>)
+</code></pre>
+<p>You can define multiple strategies depending on exception type:</p>
+<pre><code class="lang-scala"><span class="hljs-type">SomeStage</span> {
+  ...
+} retry {
+  <span class="hljs-keyword">case</span> _: <span class="hljs-type">ConnectionTimeoutException</span> =&gt; <span class="hljs-type">Retry</span>(<span class="hljs-number">3.</span>minutes, <span class="hljs-number">10</span>)
+  <span class="hljs-keyword">case</span> _: <span class="hljs-type">IOException</span> =&gt; <span class="hljs-type">Retry</span>(<span class="hljs-number">10.</span>minutes, <span class="hljs-number">3</span>)
+} retriesTimeout(<span class="hljs-number">45.</span>minutes)
+</code></pre>
+<p><code>retriesTimeout</code> helps to limit the total number of time may potentially be spent on retries.
+In the example above the potential maximum time the stage can spend retrying is 1 hour
+(30 minutes for ConnectionTimeout and 30 minutes for IOException),
+but we can say maximum 30 minutes per each exception but if it takes more than 45 minutes in retries then just fail.</p>
+<p><code>retriesTimeout</code> is optional, no limit by default.
+Thus the time spent on retries will be limited only by a sum of all <code>Retry</code> settings + time spent on actual executions.</p>
+<p><strong>IMPORTANT</strong>: <code>retriesTimeout</code> applies only when stage actually retrying, it has no effect on normal stage execution!
+  If execution takes 5 hours and it does not throw any exceptions nothing will interrupt it!</p>
+<p>If an exception which is not defined occurs it will apply default behaviour (fail the process)</p>
+<p>For better understanding how it works let&apos;s see different scenarios which may happen:</p>
+<ol>
+<li>If multiple strategies are defined and the exceptions happen in a random order the system will keep counting
+number of retries per exception.
+For the example (for the code above) if exceptions come in the order:
+<code>ConnectionTimeoutException - IOException - IOException - ConnectionTimeoutException</code> the retries counter for
+<code>ConnectionTimeout</code> will not be reset when <code>IOException</code> happens.</li>
+<li>If a system reboot/failure happens in a middle of retries the system will restore counters and retries timeout on start.
+Be aware: if <code>retriesTimeout</code> is specified and the system was down for a period of time longer that the time left for retries
+it will fail on start right away, must be restarted again to start over, see point below.</li>
+<li>If number of retries exhausted and process exits with failed stage, then the next time it starts, it re-runs the failed stage
+with all counters reset to 0.</li>
+</ol>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../doc/recovery.html" class="navigation navigation-prev " aria-label="Previous page: Recovery"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../devops/index.html" class="navigation navigation-next " aria-label="Next page: DevOps"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"toc":{},"mermaid-2":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
