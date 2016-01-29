@@ -57,7 +57,7 @@
         data-chapter-title="Error Handling"
         data-filepath="doc/error-handling.md"
         data-basepath=".."
-        data-revision="Thu Jan 28 2016 15:05:47 GMT+0000 (UTC)"
+        data-revision="Fri Jan 29 2016 15:34:34 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -247,32 +247,34 @@ the stage it was trying to execute and exits.</p>
 <p>You can define multiple strategies depending on exception type:</p>
 <pre><code class="lang-scala"><span class="hljs-type">SomeStage</span> {
   ...
-} retry {
+} onFailure {
   <span class="hljs-keyword">case</span> _: <span class="hljs-type">ConnectionTimeoutException</span> =&gt; <span class="hljs-type">Retry</span>(<span class="hljs-number">3.</span>minutes, <span class="hljs-number">10</span>)
   <span class="hljs-keyword">case</span> _: <span class="hljs-type">IOException</span> =&gt; <span class="hljs-type">Retry</span>(<span class="hljs-number">10.</span>minutes, <span class="hljs-number">3</span>)
-} retriesTimeout(<span class="hljs-number">45.</span>minutes)
+} globalRecoveryTimeout(<span class="hljs-number">45.</span>minutes)
 </code></pre>
-<p><code>retriesTimeout</code> helps to limit the total number of time may potentially be spent on retries.
-In the example above the potential maximum time the stage can spend retrying is 1 hour
+<p><code>globalRecoveryTimeout</code> helps to limit the deadline on all retries.
+In the example above the potential maximum time the stage will be retrying is 1 hour
 (30 minutes for ConnectionTimeout and 30 minutes for IOException),
-but we can say maximum 30 minutes per each exception but if it takes more than 45 minutes in retries then just fail.</p>
-<p><code>retriesTimeout</code> is optional, no limit by default.
+ but the <code>globalRecoveryTimeout</code> will limit it to ~45 minutes.
+Note: if a stage started execution, it won&apos;t be interrupted even if the timeout reached!</p>
+<p><code>globalRecoveryTimeout</code> is optional, no limit by default.
 Thus the time spent on retries will be limited only by a sum of all <code>Retry</code> settings + time spent on actual executions.</p>
-<p><strong>IMPORTANT</strong>: <code>retriesTimeout</code> applies only when stage actually retrying, it has no effect on normal stage execution!
+<p><strong>IMPORTANT</strong>: <code>globalRecoveryTimeout</code> applies only when stage is actually retrying, it has no effect on normal stage execution!
   If execution takes 5 hours and it does not throw any exceptions nothing will interrupt it!</p>
-<p>If an exception which is not defined occurs it will apply default behaviour (fail the process)</p>
-<p>For better understanding how it works let&apos;s see different scenarios which may happen:</p>
+<p>The uncovered exceptions will fail the process (default behaviour when no recovery strategy defined).</p>
+<p>If system crashed during stage retry it will restore all counters and timeout points.</p>
+<p>If system &quot;normally&quot; fails due to timeout or &quot;tried max number of attempts&quot; then all counters and timeouts will be reset on restart.</p>
+<p>Example of strategy recovery in different scenarios:</p>
 <ol>
 <li>If multiple strategies are defined and the exceptions happen in a random order the system will keep counting
 number of retries per exception.
-For the example (for the code above) if exceptions come in the order:
+For the example (for the code above) if exceptions happen in the following order:
 <code>ConnectionTimeoutException - IOException - IOException - ConnectionTimeoutException</code> the retries counter for
-<code>ConnectionTimeout</code> will not be reset when <code>IOException</code> happens.</li>
-<li>If a system reboot/failure happens in a middle of retries the system will restore counters and retries timeout on start.
-Be aware: if <code>retriesTimeout</code> is specified and the system was down for a period of time longer that the time left for retries
-it will fail on start right away, must be restarted again to start over, see point below.</li>
-<li>If number of retries exhausted and process exits with failed stage, then the next time it starts, it re-runs the failed stage
-with all counters reset to 0.</li>
+<code>ConnectionTimeout</code> will not be reset when <code>IOException</code> is thrown.</li>
+<li>If a system reboot/failure happens during stage retries, the system will restore counters and retries timeout on start.
+Note: if <code>globalRecoveryTimeout</code> is defined and the system was re-started after some delay it may be stopped due to timeout reached.
+But the next restart will reset all counters.</li>
+<li>If number of retries exhausted or timeout reached the process fails. The new restart will reset all counters and timeout.</li>
 </ol>
 
                     
