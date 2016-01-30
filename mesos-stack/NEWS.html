@@ -5,9 +5,9 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Introduction | Mesos Cluster</title>
+        <title>Release Notes | Mesos Cluster</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Scripts to configure a Mesos cluster using Mesos and Mesosphere services.">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.2">
         
         
@@ -41,8 +41,10 @@
         
     
     
-    <link rel="next" href="./NEWS.html" />
+    <link rel="next" href="./CONTRIBUTING.html" />
     
+    
+    <link rel="prev" href="./index.html" />
     
 
         <script src="gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script>
@@ -51,9 +53,9 @@
         
         
     <div class="book"
-        data-level="0"
-        data-chapter-title="Introduction"
-        data-filepath="README.md"
+        data-level="1"
+        data-chapter-title="Release Notes"
+        data-filepath="NEWS.md"
         data-basepath="."
         data-revision="Sat Jan 30 2016 04:10:10 GMT+0000 (UTC)"
         data-innerlanguage="">
@@ -83,7 +85,7 @@
 
             
     
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
                     <a href="./index.html">
@@ -96,7 +98,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1" data-path="NEWS.html">
+        <li class="chapter active" data-level="1" data-path="NEWS.html">
             
                 
                     <a href="./NEWS.html">
@@ -300,37 +302,18 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="mesos-cluster">Mesos Cluster</h1>
-<p>Scripts to configure a Mesos cluster using Mesos and Mesosphere services.</p>
+                        <h1 id="release-notes">Release notes</h1>
+<h2 id="010">0.1.0</h2>
+<p>First official release based on Mesos version 0.25.0.</p>
 <p>The main features are:</p>
 <ul>
-<li>Mesos master running the Marathon and Chronos frameworks</li>
-<li>Mesos agent with Docker containerizer</li>
-<li>Mesos DNS for core service discovery</li>
+<li>Mesos master running Marathon 0.13.0 and Chronos 2.4.0</li>
+<li>Mesos agent with Docker containerizer and cgroups isolation enabled</li>
+<li>Mesos DNS 0.5.1 for core service discovery</li>
 <li>Marathon load balancer using HAProxy for SSL and proxying to internal
 applications</li>
 </ul>
-<p>To try it out locally use the <a href="vagrant/index.html">Vagrant</a> configuration.</p>
-<p><a href="https://travis-ci.org/ypg-data/mesos-stack" target="_blank"><img src="https://travis-ci.org/ypg-data/mesos-stack.svg?branch=master" alt="Build Status"></a></p>
-<h2 id="usage">Usage</h2>
-<p>To use the scripts to build a custom Mesos cluster first install the roles in
-your project:</p>
-<pre><code>$ ansible-galaxy install --force --roles-path .ansible \
-    https://github.com/ypg-data/mesos-stack,0.1.0
-</code></pre><p>and configure Ansible to load roles from the roles directory provided by this
-project.</p>
-<p><code>ansible.cfg</code>:</p>
-<pre><code class="lang-ini"><span class="hljs-title">[defaults]</span>
-<span class="hljs-setting">roles_path = <span class="hljs-value">.ansible/mesos-stack/roles</span></span>
-</code></pre>
-<p>Alternatively, you can also use a <code>requirements.yml</code> file:</p>
-<pre><code class="lang-yaml">- src: https://github.com/ypg-data/mesos-stack
-  path: .ansible
-  version: 0.1.0
-</code></pre>
-<p>and pull down the roles to your DevOps setup by running:</p>
-<pre><code>$ ansible-galaxy install -r requirements.yml
-</code></pre>
+
                     
                     </section>
                 
@@ -340,8 +323,10 @@ project.</p>
         </div>
 
         
+        <a href="./index.html" class="navigation navigation-prev " aria-label="Previous page: Introduction"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./NEWS.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Release Notes"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./CONTRIBUTING.html" class="navigation navigation-next " aria-label="Next page: Contributing"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
