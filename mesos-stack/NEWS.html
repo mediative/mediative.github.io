@@ -57,7 +57,7 @@
         data-chapter-title="Release Notes"
         data-filepath="NEWS.md"
         data-basepath="."
-        data-revision="Sat Jan 30 2016 04:10:10 GMT+0000 (UTC)"
+        data-revision="Mon Feb 01 2016 22:02:38 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -144,14 +144,29 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1" data-path="roles/mesos/index.html">
+        <li class="chapter " data-level="3.1" data-path="roles/common/index.html">
+            
+                
+                    <a href="./roles/common/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Common
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="roles/mesos/index.html">
             
                 
                     <a href="./roles/mesos/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.</b>
+                            <b>3.2.</b>
                         
                         Mesos
                     </a>
@@ -159,14 +174,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="roles/mesos-agent/index.html">
+        <li class="chapter " data-level="3.3" data-path="roles/mesos-agent/index.html">
             
                 
                     <a href="./roles/mesos-agent/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.2.</b>
+                            <b>3.3.</b>
                         
                         Mesos Agent
                     </a>
@@ -174,14 +189,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="roles/mesos-dns/index.html">
+        <li class="chapter " data-level="3.4" data-path="roles/mesos-dns/index.html">
             
                 
                     <a href="./roles/mesos-dns/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.3.</b>
+                            <b>3.4.</b>
                         
                         Mesos DNS
                     </a>
@@ -189,14 +204,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="roles/dcos-cli/index.html">
+        <li class="chapter " data-level="3.5" data-path="roles/dcos-cli/index.html">
             
                 
                     <a href="./roles/dcos-cli/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.5.</b>
                         
                         DCOS CLI
                     </a>
@@ -204,14 +219,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="roles/docker-registry/index.html">
+        <li class="chapter " data-level="3.6" data-path="roles/docker-registry/index.html">
             
                 
                     <a href="./roles/docker-registry/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.5.</b>
+                            <b>3.6.</b>
                         
                         Docker Registry
                     </a>
@@ -219,14 +234,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="roles/docker-engine-auth/index.html">
+        <li class="chapter " data-level="3.7" data-path="roles/docker-engine-auth/index.html">
             
                 
                     <a href="./roles/docker-engine-auth/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.6.</b>
+                            <b>3.7.</b>
                         
                         Private Docker Registry Authentication
                     </a>
@@ -303,6 +318,19 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="release-notes">Release notes</h1>
+<h2 id="master">master</h2>
+<p>Improvements:</p>
+<ul>
+<li>Add support for Mesos agent and framework authentication.</li>
+<li>Enable HTTP authentication for Marathon and Chronos.</li>
+</ul>
+<p>Fixes:</p>
+<ul>
+<li>mesos-dns: remove <code>netinfo</code> from <code>IPSources</code> to fix Docker tasks becoming
+unreachable.</li>
+<li>mesos-agent: Store logs in <code>/var/log/mesos</code> and state files in <code>/mnt/mesos</code>
+so they can be analyzed after rebooting a node.</li>
+</ul>
 <h2 id="010">0.1.0</h2>
 <p>First official release based on Mesos version 0.25.0.</p>
 <p>The main features are:</p>

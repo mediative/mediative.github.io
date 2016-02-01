@@ -44,7 +44,7 @@
     <link rel="next" href="../../roles/mesos-agent/index.html" />
     
     
-    <link rel="prev" href="../../roles/index.html" />
+    <link rel="prev" href="../../roles/common/index.html" />
     
 
         <script src="../../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script>
@@ -53,11 +53,11 @@
         
         
     <div class="book"
-        data-level="3.1"
+        data-level="3.2"
         data-chapter-title="Mesos"
         data-filepath="roles/mesos/README.md"
         data-basepath="../.."
-        data-revision="Sat Jan 30 2016 04:10:10 GMT+0000 (UTC)"
+        data-revision="Mon Feb 01 2016 22:02:38 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -144,14 +144,29 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="3.1" data-path="roles/mesos/index.html">
+        <li class="chapter " data-level="3.1" data-path="roles/common/index.html">
+            
+                
+                    <a href="../../roles/common/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Common
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2" data-path="roles/mesos/index.html">
             
                 
                     <a href="../../roles/mesos/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.</b>
+                            <b>3.2.</b>
                         
                         Mesos
                     </a>
@@ -159,14 +174,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="roles/mesos-agent/index.html">
+        <li class="chapter " data-level="3.3" data-path="roles/mesos-agent/index.html">
             
                 
                     <a href="../../roles/mesos-agent/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.2.</b>
+                            <b>3.3.</b>
                         
                         Mesos Agent
                     </a>
@@ -174,14 +189,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="roles/mesos-dns/index.html">
+        <li class="chapter " data-level="3.4" data-path="roles/mesos-dns/index.html">
             
                 
                     <a href="../../roles/mesos-dns/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.3.</b>
+                            <b>3.4.</b>
                         
                         Mesos DNS
                     </a>
@@ -189,14 +204,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="roles/dcos-cli/index.html">
+        <li class="chapter " data-level="3.5" data-path="roles/dcos-cli/index.html">
             
                 
                     <a href="../../roles/dcos-cli/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.5.</b>
                         
                         DCOS CLI
                     </a>
@@ -204,14 +219,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="roles/docker-registry/index.html">
+        <li class="chapter " data-level="3.6" data-path="roles/docker-registry/index.html">
             
                 
                     <a href="../../roles/docker-registry/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.5.</b>
+                            <b>3.6.</b>
                         
                         Docker Registry
                     </a>
@@ -219,14 +234,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="roles/docker-engine-auth/index.html">
+        <li class="chapter " data-level="3.7" data-path="roles/docker-engine-auth/index.html">
             
                 
                     <a href="../../roles/docker-engine-auth/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.6.</b>
+                            <b>3.7.</b>
                         
                         Private Docker Registry Authentication
                     </a>
@@ -320,12 +335,22 @@ recent 0.11 release use <code>0.11</code>.</p>
 <pre><code class="lang-yaml">mesos_version: &quot;0.25.0&quot;
 </code></pre>
 </li>
-<li><p><code>host_mappings</code></p>
-<p>List defining additional <code>/etc/hosts</code> mappings. Each entry should define <code>ip</code>
-and <code>name</code>.</p>
+</ul>
+<ul>
+<li><p><code>mesos_credentials</code></p>
+<p>Credentials used for agent and framework authentication.</p>
 <p>Example:</p>
-<pre><code class="lang-yaml">host_mappings:
-  - { ip: &apos;52.7.220.1&apos;, name: &apos;docker-registry.example.org&apos; }
+<pre><code class="lang-yaml">mesos_credentials:
+  principal: mesos
+  secret: mesos
+</code></pre>
+</li>
+<li><p><code>mesos_http_credentials</code></p>
+<p>Credentials for HTTP authentication in Marathon and Chronos. Must have the
+form: <code>&lt;user&gt;:&lt;password&gt;</code>. Defaults to the credentials configured in
+<code>mesos_credentials</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-yaml">mesos_http_credentials: &quot;john:p4ssword&quot;
 </code></pre>
 </li>
 </ul>
@@ -339,7 +364,7 @@ and <code>name</code>.</p>
         </div>
 
         
-        <a href="../../roles/index.html" class="navigation navigation-prev " aria-label="Previous page: Roles"><i class="fa fa-angle-left"></i></a>
+        <a href="../../roles/common/index.html" class="navigation navigation-prev " aria-label="Previous page: Common"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../roles/mesos-agent/index.html" class="navigation navigation-next " aria-label="Next page: Mesos Agent"><i class="fa fa-angle-right"></i></a>

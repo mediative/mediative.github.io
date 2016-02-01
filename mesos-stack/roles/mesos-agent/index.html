@@ -53,11 +53,11 @@
         
         
     <div class="book"
-        data-level="3.2"
+        data-level="3.3"
         data-chapter-title="Mesos Agent"
         data-filepath="roles/mesos-agent/README.md"
         data-basepath="../.."
-        data-revision="Sat Jan 30 2016 04:10:10 GMT+0000 (UTC)"
+        data-revision="Mon Feb 01 2016 22:02:38 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -144,14 +144,29 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1" data-path="roles/mesos/index.html">
+        <li class="chapter " data-level="3.1" data-path="roles/common/index.html">
+            
+                
+                    <a href="../../roles/common/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Common
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="roles/mesos/index.html">
             
                 
                     <a href="../../roles/mesos/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.</b>
+                            <b>3.2.</b>
                         
                         Mesos
                     </a>
@@ -159,14 +174,14 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.2" data-path="roles/mesos-agent/index.html">
+        <li class="chapter active" data-level="3.3" data-path="roles/mesos-agent/index.html">
             
                 
                     <a href="../../roles/mesos-agent/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.2.</b>
+                            <b>3.3.</b>
                         
                         Mesos Agent
                     </a>
@@ -174,14 +189,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="roles/mesos-dns/index.html">
+        <li class="chapter " data-level="3.4" data-path="roles/mesos-dns/index.html">
             
                 
                     <a href="../../roles/mesos-dns/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.3.</b>
+                            <b>3.4.</b>
                         
                         Mesos DNS
                     </a>
@@ -189,14 +204,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="roles/dcos-cli/index.html">
+        <li class="chapter " data-level="3.5" data-path="roles/dcos-cli/index.html">
             
                 
                     <a href="../../roles/dcos-cli/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.5.</b>
                         
                         DCOS CLI
                     </a>
@@ -204,14 +219,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="roles/docker-registry/index.html">
+        <li class="chapter " data-level="3.6" data-path="roles/docker-registry/index.html">
             
                 
                     <a href="../../roles/docker-registry/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.5.</b>
+                            <b>3.6.</b>
                         
                         Docker Registry
                     </a>
@@ -219,14 +234,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="roles/docker-engine-auth/index.html">
+        <li class="chapter " data-level="3.7" data-path="roles/docker-engine-auth/index.html">
             
                 
                     <a href="../../roles/docker-engine-auth/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.6.</b>
+                            <b>3.7.</b>
                         
                         Private Docker Registry Authentication
                     </a>
@@ -306,7 +321,8 @@
 <p>Configure the Mesos agent to use both the docker and mesos containerizers and
 enable the <code>cgroup</code> isolator, since the default POSIX isolator doesn&#x2019;t provide
 the same robust isolation guarantees. To gracefully handle larger docker images,
-the executor registration timeout is set to 5 minutes.</p>
+the executor registration timeout is set to 5 minutes. Log files are configured
+to be stored on <code>/var/log/mesos</code> so they are persisted across reboots.</p>
 <p>Depends on the <a href="../mesos/index.html">mesos</a> role.</p>
 <p>No supported configuration variables.</p>
 <h2 id="hooks">Hooks</h2>
