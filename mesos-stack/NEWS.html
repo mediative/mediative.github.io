@@ -57,7 +57,7 @@
         data-chapter-title="Release Notes"
         data-filepath="NEWS.md"
         data-basepath="."
-        data-revision="Mon Feb 01 2016 22:02:38 GMT+0000 (UTC)"
+        data-revision="Wed Feb 03 2016 19:02:38 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -321,15 +321,17 @@
 <h2 id="master">master</h2>
 <p>Improvements:</p>
 <ul>
+<li>mesos-agent: Support CentOS 6.5 with docker containerizer.</li>
 <li>Add support for Mesos agent and framework authentication.</li>
 <li>Enable HTTP authentication for Marathon and Chronos.</li>
 </ul>
 <p>Fixes:</p>
 <ul>
-<li>mesos-dns: remove <code>netinfo</code> from <code>IPSources</code> to fix Docker tasks becoming
+<li>mesos-dns: Remove <code>netinfo</code> from <code>IPSources</code> to fix Docker tasks becoming
 unreachable.</li>
 <li>mesos-agent: Store logs in <code>/var/log/mesos</code> and state files in <code>/mnt/mesos</code>
 so they can be analyzed after rebooting a node.</li>
+<li>docker-engine: Use APT repo key hosted on apt.dockerproject.org</li>
 </ul>
 <h2 id="010">0.1.0</h2>
 <p>First official release based on Mesos version 0.25.0.</p>
