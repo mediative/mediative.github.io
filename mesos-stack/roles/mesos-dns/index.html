@@ -57,7 +57,7 @@
         data-chapter-title="Mesos DNS"
         data-filepath="roles/mesos-dns/README.md"
         data-basepath="../.."
-        data-revision="Fri Feb 05 2016 01:17:39 GMT+0000 (UTC)"
+        data-revision="Fri Feb 05 2016 08:40:08 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -335,6 +335,14 @@ versions.</p>
 <p>Path to where the Mesos DNS binary should be installed.</p>
 <p>Example:</p>
 <pre><code class="lang-yaml">mesos_dns_bin: &quot;/opt/mesos-dns-&quot;
+</code></pre>
+</li>
+<li><p><code>mesos_dns_resolvers</code></p>
+<p>An ordered list of DNS resolvers to use for external lookups. </p>
+<p>Example:</p>
+<pre><code class="lang-yaml">mesos_dns_resolver:
+ - 10.10.10.10 # Internal
+ - 8.8.8.8 # Google
 </code></pre>
 </li>
 </ul>
