@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Time Management | Eigenflow</title>
+        <title>Messaging | Eigenflow</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../doc/recovery.html" />
+    <link rel="next" href="../devops/index.html" />
     
     
-    <link rel="prev" href="../doc/process-stages.html" />
+    <link rel="prev" href="../doc/error-handling.html" />
     
 
         <script src="../gitbook/plugins/gitbook-plugin-mermaid-2/bower_components/mermaid/dist/mermaid.min.js"></script>
@@ -53,9 +53,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="Time Management"
-        data-filepath="doc/time-management.md"
+        data-level="6"
+        data-chapter-title="Messaging"
+        data-filepath="doc/messaging.md"
         data-basepath=".."
         data-revision="Fri Feb 05 2016 17:29:42 GMT+0000 (UTC)"
         data-innerlanguage="">
@@ -128,7 +128,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="doc/time-management.html">
+        <li class="chapter " data-level="3" data-path="doc/time-management.html">
             
                 
                     <a href="../doc/time-management.html">
@@ -173,7 +173,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6" data-path="doc/messaging.html">
+        <li class="chapter active" data-level="6" data-path="doc/messaging.html">
             
                 
                     <a href="../doc/messaging.html">
@@ -251,23 +251,57 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="time-management">Time Management</h1>
-<p>If a process must run once an hour, day, week etc. you can have an additional control which allows automatically</p>
+                        <h1 id="messaging">Messaging</h1>
+<!-- toc -->
 <ul>
-<li>Catching up, for example if a process should run daily but the last successful run was 3 days ago it will automatically
-run for every missing day until now.</li>
-<li>Protects from double run, if a process should run daily and it <strong>successfully</strong> finished execution today it won&apos;t run for today
-again even if it was executed again, unless it was explicitly asked to do so.
-Thus you shouldn&apos;t worry about occasional loading of the same data twice.
-Note: to have a guaranteed double run protection, the environment must satisfy 2 conditions:<ol>
-<li>Persistence layer must not be eventual consistent. We use cassandra configured for consistency.</li>
-<li>No simultaneous runs of the same process. We use mesos with chronos to schedule processes in cluster.</li>
-</ol>
-</li>
+<li><a href="#standard-messages">Standard Messages</a></li>
+<li><a href="#custom-messages">Custom Messages</a><ul>
+<li><a href="#metrics-messages">Metrics messages</a></li>
+<li><a href="#direct-messaging">Direct messaging</a></li>
 </ul>
-<p>Override <code>nextProcessingDate(lastCompleted: Date): Date</code> method to define next run date should be, based on the last completed date.</p>
-<p>TODO: examples</p>
+</li>
+<li><a href="#configuration">Configuration</a></li>
+</ul>
+<!-- toc stop -->
+<h2 id="standard-messages">Standard Messages</h2>
+<p><code>Eigenflow</code> publishes messages for each run start/failure/complete and stage switches.</p>
+<p>(Subject to change) Currently each process has it&apos;s own set of topics:</p>
+<ul>
+<li><code>process_id</code> for messages on process level: run start/failure/complete events</li>
+<li><code>process_id-stages</code> for messages on a process run level: stage switches</li>
+<li><code>process_id-&lt;custom&gt;</code> for metrics messages, see <a href="#custom-messages">Custom Messages</a></li>
+</ul>
+<p>Published messages are json serialized instances of classes defined in <a href="https://github.com/ypg-data/eigenflow/tree/master/src/main/scala/com.mediative.eigenflow/domain/messages" target="_blank">messages package</a>.</p>
+<h2 id="custom-messages">Custom Messages</h2>
+<p>There are 2 types of custom messages currently supported:</p>
+<h3 id="metrics-messages">Metrics messages</h3>
+<p>Metrics messages must be added to each stage and provide <code>StageResult =&gt; Map[String, Double]</code> function to generate metrics. 
+For example:</p>
+<pre><code class="lang-scala"><span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">stage</span> =</span> <span class="hljs-type">Stage</span> {
+  <span class="hljs-type">Future</span> { ... }
+} publishMetrics(<span class="hljs-string">&quot;statistics&quot;</span>, _ =&gt; <span class="hljs-type">Map</span>(<span class="hljs-string">&quot;total&quot;</span> -&gt; <span class="hljs-number">1.0</span>))
+</code></pre>
+<p>In this case a message with process, stage and metrics information will be published to <code>process_id-statistics</code> topic.</p>
+<h3 id="direct-messaging">Direct messaging</h3>
+<p>To get access to messaging system define implicit of <code>MessagingSystem</code> in process class constructor, for example:</p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyProcess</span>(</span><span class="hljs-keyword">implicit</span> ms: <span class="hljs-type">MessagingSystem</span>) <span class="hljs-keyword">extends</span> <span class="hljs-type">StagedProcess</span>
+</code></pre>
+<p>now a message can be published using <code>publish</code> function:</p>
+<pre><code>ms.publish(topicName, message)
+</code></pre><p>The <code>message</code> parameter can be any string.</p>
+<p>Suggestion: <a href="https://github.com/ypg-data/eigenflow/blob/master/src/main/scala/com.mediative.eigenflow/domain/messages/GenericMessage.scala" target="_blank">GenericMessage</a>
+can be used to add basic process information fields (not data!) along with the custom message, but it&apos;s optional.</p>
+<h2 id="configuration">Configuration</h2>
+<p>By default <code>Eigenflow</code> uses <code>PrintMessagingSystem</code> which simply logs messages using the standard logger.</p>
+<p>To enable kafka the following settings must be set in <code>application.conf</code></p>
+<pre><code>eigenflow {
+  messaging = &quot;com.mediative.eigenflow.publisher.kafka.KafkaMessagingSystem&quot;
 
+  kafka {
+    bootstrap.servers = &quot;...&quot;
+  }
+}
+</code></pre>
                     
                     </section>
                 
@@ -277,10 +311,10 @@ Note: to have a guaranteed double run protection, the environment must satisfy 2
         </div>
 
         
-        <a href="../doc/process-stages.html" class="navigation navigation-prev " aria-label="Previous page: Process Stages"><i class="fa fa-angle-left"></i></a>
+        <a href="../doc/error-handling.html" class="navigation navigation-prev " aria-label="Previous page: Error Handling"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../doc/recovery.html" class="navigation navigation-next " aria-label="Next page: Recovery"><i class="fa fa-angle-right"></i></a>
+        <a href="../devops/index.html" class="navigation navigation-next " aria-label="Next page: DevOps"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
