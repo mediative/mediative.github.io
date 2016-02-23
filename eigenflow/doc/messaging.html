@@ -57,7 +57,7 @@
         data-chapter-title="Messaging"
         data-filepath="doc/messaging.md"
         data-basepath=".."
-        data-revision="Wed Feb 10 2016 22:01:07 GMT+0000 (UTC)"
+        data-revision="Tue Feb 23 2016 19:26:45 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -279,7 +279,7 @@
 For example:</p>
 <pre><code class="lang-scala"><span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">stage</span> =</span> <span class="hljs-type">Stage</span> {
   <span class="hljs-type">Future</span> { ... }
-} publishMetrics(<span class="hljs-string">&quot;statistics&quot;</span>, _ =&gt; <span class="hljs-type">Map</span>(<span class="hljs-string">&quot;total&quot;</span> -&gt; <span class="hljs-number">1.0</span>))
+} publishMetrics(_ =&gt; <span class="hljs-type">Map</span>(<span class="hljs-string">&quot;total&quot;</span> -&gt; <span class="hljs-number">1.0</span>))
 </code></pre>
 <p>In this case a message with process, stage and metrics information will be published to <code>process_id-statistics</code> topic.</p>
 <h3 id="direct-messaging">Direct messaging</h3>
@@ -299,6 +299,7 @@ can be used to add basic process information fields (not data!) along with the c
 
   kafka {
     bootstrap.servers = &quot;...&quot;
+    topic.prefix = &quot;...&quot; // Optional. The Default value is &quot;eigenflow&quot;.
   }
 }
 </code></pre>
