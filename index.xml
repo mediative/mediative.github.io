@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>YPG Data</title>
+    <link>https://ypg-data.github.io/</link>
+    <description>Recent content on YPG Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 26 Feb 2016 14:46:46 -0500</lastBuildDate>
+    <atom:link href="https://ypg-data.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Running Zeppelin on CDH</title>
+      <link>https://ypg-data.github.io/post/running-zeppelin-on-cloudera/</link>
+      <pubDate>Fri, 26 Feb 2016 14:46:46 -0500</pubDate>
+      
+      <guid>https://ypg-data.github.io/post/running-zeppelin-on-cloudera/</guid>
+      <description>
+
+&lt;h2 id=&#34;download-and-build-zeppelin:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
+
+&lt;p&gt;Go to the &lt;a href=&#34;http://zeppelin.incubator.apache.org/download.html&#34;&gt;download page&lt;/a&gt;
+and get the latest source package.&lt;/p&gt;
+
+&lt;p&gt;Untar the source package and create a git repo to make bower happy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ tar zxvf zeppelin-0.5.6-incubating.tgz
+$ cd zeppelin-0.5.6-incubating
+$ git init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Before building from source first determine the Hadoop version by running the
+following command on the edge node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hadoop version
+Hadoop 2.6.0-cdh5.4.8
+...
+This command was run using /opt/cloudera/parcels/CDH-5.4.8-1.cdh5.4.8.p0.4/lib/hadoop/hadoop-common-2.6.0-cdh5.4.8.jar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Build Zeppelin with &lt;a href=&#34;http://zeppelin.incubator.apache.org/docs/0.5.6-incubating/install/yarn_install.html&#34;&gt;YARN support&lt;/a&gt;
+enabled using the Maven profile corresponding to the Hadoop version found above:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mvn clean package -Pbuild-distr -Pyarn -Pspark-1.5 -Dspark.version=1.5.2 \
+    -Phadoop-2.6 -Dhadoop.version=2.6.0-cdh5.4.8 -DskipTests -Pvendor-repo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note we are assuming that you are using a custom Spark version as described in
+&lt;a href=&#34;https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;installing-zeppelin-on-the-edge-node:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
+
+&lt;p&gt;Copy the distribution to the edge node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scp zeppelin-distribution/target/zeppelin-x.y.z-incubating.tar.gz edge-node:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;SSH to the edge node, unzip the tarball and &lt;code&gt;cd&lt;/code&gt; to the Zeppelin installation directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ tar zxvf /path/to/zeppelin-x.y.z-incubating.tar.gz
+$ cd zeppelin-x.y.z-incubating/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Configure Zeppelin by creating and editing &lt;code&gt;conf/zeppelin-env.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cp conf/zeppelin-env.sh{.template,}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It should contain the following variables:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;export SPARK_HOME=&amp;quot;$HOME/spark-x.y.z-bin-cdhx.y.z&amp;quot; # Assuming you are using a custom Spark version
+export MASTER=yarn-client
+export ZEPPELIN_JAVA_OPTS=&amp;quot;-Dspark.yarn.jar=$HOME/spark-x.y.z-bin-cdhx.y.z/lib/spark-assembly-x.y.z-hadoopx.y.z-cdhx.y.z.jar&amp;quot;
+
+export DEFAULT_HADOOP_HOME=/opt/cloudera/parcels/CDH-x.y.z-1.cdhx.y.z.p0.11/lib/hadoop
+export HADOOP_HOME=${HADOOP_HOME:-$DEFAULT_HADOOP_HOME}
+
+if [ -n &amp;quot;$HADOOP_HOME&amp;quot; ]; then
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HADOOP_HOME}/lib/native
+fi
+
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;manage-the-zeppelin-server:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Manage the Zeppelin Server&lt;/h2&gt;
+
+&lt;p&gt;To start the server run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ bin/zeppelin-daemon.sh start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To stop it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ bin/zeppelin-daemon.sh stop
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Installing a Custom Spark Version on CDH</title>
+      <link>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</link>
+      <pubDate>Sat, 13 Feb 2016 19:54:46 -0500</pubDate>
+      
+      <guid>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</guid>
+      <description>&lt;p&gt;Since Spark can be run as a YARN application it is possible to run a Spark
+version other than the one provided by the Cloudera platform (CDH). This
+document lists the instructions for how to compile a specific Spark version
+against the Hadoop version supported by CDH. The instructions are based on the
+post &lt;a href=&#34;https://www.linkedin.com/pulse/running-spark-151-cdh-deenar-toraskar-cfa&#34;&gt;Running Spark 1.5.1 on
+CDH&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Determine the version of CDH and Hadoop by running the following command on
+the edge node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hadoop version
+Hadoop 2.6.0-cdh5.4.8
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/downloads.html&#34;&gt;Download Spark&lt;/a&gt; and extract the
+sources.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/latest/building-spark.html&#34;&gt;Build Spark&lt;/a&gt; by
+opening the distribution directory in the shell and running the following
+command using the CDH and Hadoop version from step 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./make-distribution.sh --tgz --name cdh5.4.8 -Pyarn \
+     -Phadoop-2.6 -Phadoop-provided -Dhadoop.version=2.6.0-cdh5.4.8 \
+     -Phive -Phive-thriftserver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &lt;code&gt;-Phadoop-provided&lt;/code&gt; enables the profile to build the assembly
+without including Hadoop-ecosystem dependencies provided by Cloudera. To
+compile with Spark 2.11 support first run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./dev/change-scala-version.sh 2.11
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and pass &lt;code&gt;-Dscala-2.11&lt;/code&gt; to &lt;code&gt;make-distribution.sh&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Copy the resulting &lt;code&gt;tgz&lt;/code&gt; file to the edge node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scp spark-x.x.x-bin-cdh5.4.8.tgz user@edge-node:
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Connect to the edge node and &lt;code&gt;sudo&lt;/code&gt; as the ETL user&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Extract the &lt;code&gt;tgz&lt;/code&gt; file&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cd&lt;/code&gt; into the custom Spark distribution and configure the custom Spark
+distribution:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ cp -R /etc/spark/conf/* conf/
+ # Change SPARK_HOME to point to folder with custom Spark distrobution
+ $ sed -i &amp;quot;s#\(.*SPARK_HOME\)=.*#\1=$(pwd)#&amp;quot; conf/spark-env.sh
+ # Tell YARN which Spark JAR to use
+ $ echo &amp;quot;spark.yarn.jar=$(pwd)/$(ls lib/spark-assembly-*.jar)&amp;quot; &amp;gt;&amp;gt; conf/spark-defaults.conf
+ $ cp /etc/hive/conf/hive-site.xml conf/
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Test the custom Spark distribution:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ ./bin/run-example SparkPi 10 --master yarn-client
+ $ ./bin/spark-shell --master yarn-client
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://ypg-data.github.io/about/</link>
+      <pubDate>Sat, 13 Feb 2016 19:51:05 -0500</pubDate>
+      
+      <guid>https://ypg-data.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

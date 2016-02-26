@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spark on YPG Data</title>
+    <link>https://ypg-data.github.io/tags/spark/</link>
+    <description>Recent content in Spark on YPG Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 13 Feb 2016 19:54:46 -0500</lastBuildDate>
+    <atom:link href="https://ypg-data.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Installing a Custom Spark Version on CDH</title>
+      <link>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</link>
+      <pubDate>Sat, 13 Feb 2016 19:54:46 -0500</pubDate>
+      
+      <guid>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</guid>
+      <description>&lt;p&gt;Since Spark can be run as a YARN application it is possible to run a Spark
+version other than the one provided by the Cloudera platform (CDH). This
+document lists the instructions for how to compile a specific Spark version
+against the Hadoop version supported by CDH. The instructions are based on the
+post &lt;a href=&#34;https://www.linkedin.com/pulse/running-spark-151-cdh-deenar-toraskar-cfa&#34;&gt;Running Spark 1.5.1 on
+CDH&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Determine the version of CDH and Hadoop by running the following command on
+the edge node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ hadoop version
+Hadoop 2.6.0-cdh5.4.8
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/downloads.html&#34;&gt;Download Spark&lt;/a&gt; and extract the
+sources.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://spark.apache.org/docs/latest/building-spark.html&#34;&gt;Build Spark&lt;/a&gt; by
+opening the distribution directory in the shell and running the following
+command using the CDH and Hadoop version from step 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./make-distribution.sh --tgz --name cdh5.4.8 -Pyarn \
+     -Phadoop-2.6 -Phadoop-provided -Dhadoop.version=2.6.0-cdh5.4.8 \
+     -Phive -Phive-thriftserver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that &lt;code&gt;-Phadoop-provided&lt;/code&gt; enables the profile to build the assembly
+without including Hadoop-ecosystem dependencies provided by Cloudera. To
+compile with Spark 2.11 support first run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./dev/change-scala-version.sh 2.11
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and pass &lt;code&gt;-Dscala-2.11&lt;/code&gt; to &lt;code&gt;make-distribution.sh&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Copy the resulting &lt;code&gt;tgz&lt;/code&gt; file to the edge node:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scp spark-x.x.x-bin-cdh5.4.8.tgz user@edge-node:
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Connect to the edge node and &lt;code&gt;sudo&lt;/code&gt; as the ETL user&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Extract the &lt;code&gt;tgz&lt;/code&gt; file&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cd&lt;/code&gt; into the custom Spark distribution and configure the custom Spark
+distribution:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ cp -R /etc/spark/conf/* conf/
+ # Change SPARK_HOME to point to folder with custom Spark distrobution
+ $ sed -i &amp;quot;s#\(.*SPARK_HOME\)=.*#\1=$(pwd)#&amp;quot; conf/spark-env.sh
+ # Tell YARN which Spark JAR to use
+ $ echo &amp;quot;spark.yarn.jar=$(pwd)/$(ls lib/spark-assembly-*.jar)&amp;quot; &amp;gt;&amp;gt; conf/spark-defaults.conf
+ $ cp /etc/hive/conf/hive-site.xml conf/
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Test the custom Spark distribution:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $ ./bin/run-example SparkPi 10 --master yarn-client
+ $ ./bin/spark-shell --master yarn-client
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Running Zeppelin on CDH &middot;  YPG Data" />
+  	<meta property="og:site_name" content="YPG Data" />
+  	<meta property="og:url" content="https://ypg-data.github.io/post/running-zeppelin-on-cloudera/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-02-26T14:46:46-05:00" />
+
+    
+    <meta property="og:article:tag" content="zeppelin" />
+    
+    <meta property="og:article:tag" content="cloudera" />
+    
+    <meta property="og:article:tag" content="cdh" />
+    
+    
+
+  <title>
+     Running Zeppelin on CDH &middot;  YPG Data
+  </title>
+
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://ypg-data.github.io/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://ypg-data.github.io/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://ypg-data.github.io/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://ypg-data.github.io/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="https://ypg-data.github.io/index.xml" rel="alternate" type="application/rss+xml" title="YPG Data" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.15" />
+
+    <link rel="canonical" href="https://ypg-data.github.io/post/running-zeppelin-on-cloudera/" />
+
+    
+
+    
+        <link rel="stylesheet" type="text/css" href="https://ypg-data.github.io/css/custom.css" />
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/about/">About</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="https://ypg-data.github.io/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head" style="background-image: url(https://ypg-data.github.io/images/zeppelin.jpg)">
+  <nav class="main-nav overlay clearfix">
+
+
+  
+      <a class="menu-button" href="https://ypg-data.github.io/" style="float:left;"><span class="burger"></span><span class="word">Home</span></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Running Zeppelin on CDH</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-02-26T14:46:46-05:00">
+            Feb 26, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/zeppelin/">#zeppelin</a></span>
+         
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/cloudera/">#cloudera</a></span>
+         
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/cdh/">#cdh</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<h2 id="download-and-build-zeppelin:f7f4854e149c9cff12c48fbd2555be7b">Download and Build Zeppelin</h2>
+
+<p>Go to the <a href="http://zeppelin.incubator.apache.org/download.html">download page</a>
+and get the latest source package.</p>
+
+<p>Untar the source package and create a git repo to make bower happy:</p>
+
+<pre><code>$ tar zxvf zeppelin-0.5.6-incubating.tgz
+$ cd zeppelin-0.5.6-incubating
+$ git init
+</code></pre>
+
+<p>Before building from source first determine the Hadoop version by running the
+following command on the edge node:</p>
+
+<pre><code>$ hadoop version
+Hadoop 2.6.0-cdh5.4.8
+...
+This command was run using /opt/cloudera/parcels/CDH-5.4.8-1.cdh5.4.8.p0.4/lib/hadoop/hadoop-common-2.6.0-cdh5.4.8.jar
+</code></pre>
+
+<p>Build Zeppelin with <a href="http://zeppelin.incubator.apache.org/docs/0.5.6-incubating/install/yarn_install.html">YARN support</a>
+enabled using the Maven profile corresponding to the Hadoop version found above:</p>
+
+<pre><code>$ mvn clean package -Pbuild-distr -Pyarn -Pspark-1.5 -Dspark.version=1.5.2 \
+    -Phadoop-2.6 -Dhadoop.version=2.6.0-cdh5.4.8 -DskipTests -Pvendor-repo
+</code></pre>
+
+<p>Note we are assuming that you are using a custom Spark version as described in
+<a href="/post/installing-a-custom-spark-version-on-cloudera/">our previous post</a>.</p>
+
+<h2 id="installing-zeppelin-on-the-edge-node:f7f4854e149c9cff12c48fbd2555be7b">Installing Zeppelin on the Edge Node</h2>
+
+<p>Copy the distribution to the edge node:</p>
+
+<pre><code>$ scp zeppelin-distribution/target/zeppelin-x.y.z-incubating.tar.gz edge-node:
+</code></pre>
+
+<p>SSH to the edge node, unzip the tarball and <code>cd</code> to the Zeppelin installation directory:</p>
+
+<pre><code>$ tar zxvf /path/to/zeppelin-x.y.z-incubating.tar.gz
+$ cd zeppelin-x.y.z-incubating/
+</code></pre>
+
+<p>Configure Zeppelin by creating and editing <code>conf/zeppelin-env.sh</code>:</p>
+
+<pre><code>$ cp conf/zeppelin-env.sh{.template,}
+</code></pre>
+
+<p>It should contain the following variables:</p>
+
+<pre><code class="language-sh">export SPARK_HOME=&quot;$HOME/spark-x.y.z-bin-cdhx.y.z&quot; # Assuming you are using a custom Spark version
+export MASTER=yarn-client
+export ZEPPELIN_JAVA_OPTS=&quot;-Dspark.yarn.jar=$HOME/spark-x.y.z-bin-cdhx.y.z/lib/spark-assembly-x.y.z-hadoopx.y.z-cdhx.y.z.jar&quot;
+
+export DEFAULT_HADOOP_HOME=/opt/cloudera/parcels/CDH-x.y.z-1.cdhx.y.z.p0.11/lib/hadoop
+export HADOOP_HOME=${HADOOP_HOME:-$DEFAULT_HADOOP_HOME}
+
+if [ -n &quot;$HADOOP_HOME&quot; ]; then
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${HADOOP_HOME}/lib/native
+fi
+
+export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
+</code></pre>
+
+<h2 id="manage-the-zeppelin-server:f7f4854e149c9cff12c48fbd2555be7b">Manage the Zeppelin Server</h2>
+
+<p>To start the server run:</p>
+
+<pre><code> $ bin/zeppelin-daemon.sh start
+</code></pre>
+
+<p>To stop it:</p>
+
+<pre><code> $ bin/zeppelin-daemon.sh stop
+</code></pre>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://ypg-data.github.io/">Jonas Fonseca</a></h4>
+  
+  <p>Senior Backend Developer</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Montreal, QC</span>
+    <span class="author-link icon-link"><a href="https://github.com/jonas">https://github.com/jonas</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Running%20Zeppelin%20on%20CDH&amp;url=https%3a%2f%2fypg-data.github.io%2fpost%2frunning-zeppelin-on-cloudera%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fypg-data.github.io%2fpost%2frunning-zeppelin-on-cloudera%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">YPG Data</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://ypg-data.github.io/js/jquery.js"></script>
+    <script type="text/javascript" src="https://ypg-data.github.io/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://ypg-data.github.io/js/index.js"></script>
+    
+</body>
+</html>
+
