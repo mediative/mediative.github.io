@@ -144,7 +144,7 @@ compile with Spark 2.11 support first run:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ scp spark-x.x.x-bin-cdh5.4.8.tgz user@edge-node:
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Connect to the edge node and &lt;code&gt;sudo&lt;/code&gt; as the ETL user&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Connect to the edge node&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Extract the &lt;code&gt;tgz&lt;/code&gt; file&lt;/p&gt;&lt;/li&gt;
 
@@ -166,15 +166,6 @@ distribution:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://ypg-data.github.io/about/</link>
-      <pubDate>Sat, 13 Feb 2016 19:51:05 -0500</pubDate>
-      
-      <guid>https://ypg-data.github.io/about/</guid>
-      <description></description>
     </item>
     
   </channel>

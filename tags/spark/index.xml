@@ -57,7 +57,7 @@ compile with Spark 2.11 support first run:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ scp spark-x.x.x-bin-cdh5.4.8.tgz user@edge-node:
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Connect to the edge node and &lt;code&gt;sudo&lt;/code&gt; as the ETL user&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Connect to the edge node&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Extract the &lt;code&gt;tgz&lt;/code&gt; file&lt;/p&gt;&lt;/li&gt;
 
