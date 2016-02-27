@@ -97,6 +97,36 @@ export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
     </item>
     
     <item>
+      <title>Mesos Stack version 0.4.0</title>
+      <link>https://ypg-data.github.io/post/mesos-stack-version-0.4.0/</link>
+      <pubDate>Wed, 24 Feb 2016 14:25:03 -0500</pubDate>
+      
+      <guid>https://ypg-data.github.io/post/mesos-stack-version-0.4.0/</guid>
+      <description>
+
+&lt;p&gt;Version &lt;a href=&#34;https://github.com/ypg-data/mesos-stack/releases/tag/0.4.0&#34;&gt;0.4.0&lt;/a&gt; has
+been released of our Mesos stack. It updates Marathon-LB to use an upstream
+released version and adds a new GlusterFS role to distribute files across the
+Mesos cluster. Also enjoy the new and improved
+&lt;a href=&#34;https://ypg-data.github.io/mesos-stack/&#34;&gt;documentation&lt;/a&gt; which is generated from
+the Ansible role files.&lt;/p&gt;
+
+&lt;h2 id=&#34;release-notes:f53641a3a79f315fc239526fa8f57943&#34;&gt;Release notes&lt;/h2&gt;
+
+&lt;p&gt;Improvements:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;mesos-master, mesos-agent: Use fully qualified host names.&lt;/li&gt;
+&lt;li&gt;Generate Ansible role documentation from YAML files so they are always up to
+date.&lt;/li&gt;
+&lt;li&gt;marathon-lb: Upgrade to version 1.1.1.&lt;/li&gt;
+&lt;li&gt;common: Disable IPv6 on all cluster nodes.&lt;/li&gt;
+&lt;li&gt;New glusterfs role which adds persistent storage across nodes.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Installing a Custom Spark Version on CDH</title>
       <link>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</link>
       <pubDate>Sat, 13 Feb 2016 19:54:46 -0500</pubDate>
