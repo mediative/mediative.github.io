@@ -6,8 +6,34 @@
     <description>Recent content in Release on YPG Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Feb 2016 14:25:03 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 29 Feb 2016 21:44:36 -0500</lastBuildDate>
     <atom:link href="https://ypg-data.github.io/tags/release/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Sparrow version 0.2.0</title>
+      <link>https://ypg-data.github.io/post/sparrow-version-0.2.0/</link>
+      <pubDate>Mon, 29 Feb 2016 21:44:36 -0500</pubDate>
+      
+      <guid>https://ypg-data.github.io/post/sparrow-version-0.2.0/</guid>
+      <description>
+
+&lt;p&gt;Sparrow version &lt;a href=&#34;https://github.com/ypg-data/sparrow/releases/tag/0.2.0&#34;&gt;0.2.0&lt;/a&gt;
+is now available with updated dependency on Spark 1.6.0.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s both available as a &lt;a href=&#34;http://spark-packages.org/package/ypg-data/sparrow&#34;&gt;Spark
+package&lt;/a&gt; and from the &lt;a href=&#34;https://github.com/ypg-data/sparrow/blob/6589d0f3302520d284461e0aced147d9e14ddb7d/README.md#getting-started&#34;&gt;YPG
+Data Bintray
+repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;release-notes:c39fc117d47053a4b538eba8f1c5a2fd&#34;&gt;Release notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Bump Spark version to 1.6.0&lt;/li&gt;
+&lt;li&gt;Test against Scala 2.10.6 on Travis&lt;/li&gt;
+&lt;li&gt;Bump the Macro Paradise plugin to 2.1.0&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Mesos Stack version 0.4.0</title>
