@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" News from Spark Summit East &middot;  YPG Data" />
+  	<meta property="og:site_name" content="YPG Data" />
+  	<meta property="og:url" content="https://ypg-data.github.io/post/post-title/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-02-28T21:38:37-05:00" />
+
+    
+    <meta property="og:article:tag" content="spark" />
+    
+    <meta property="og:article:tag" content="pipeline" />
+    
+    <meta property="og:article:tag" content="machinelearning" />
+    
+    
+
+  <title>
+     News from Spark Summit East &middot;  YPG Data
+  </title>
+
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://ypg-data.github.io/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://ypg-data.github.io/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://ypg-data.github.io/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://ypg-data.github.io/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="https://ypg-data.github.io/index.xml" rel="alternate" type="application/rss+xml" title="YPG Data" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.16-DEV" />
+
+    <link rel="canonical" href="https://ypg-data.github.io/post/post-title/" />
+
+    
+
+    
+        <link rel="stylesheet" type="text/css" href="https://ypg-data.github.io/css/custom.css" />
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Home</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/projects/">Projects</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="https://ypg-data.github.io/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">News from Spark Summit East</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-02-28T21:38:37-05:00">
+            Feb 28, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/spark/">#spark</a></span>
+         
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/pipeline/">#pipeline</a></span>
+         
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/machinelearning/">#machinelearning</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>Mediative is building a data pipeline on top of Spark
+so I went to <a href="https://spark-summit.org/east-2016/">Spark Summit East</a>
+to see what other people are doing and what&rsquo;s coming.
+There were many conference tracks including Enterprise, Developer and Data Science.
+I mostly attended Data Science talks and below are the highlights.
+Some of this information also came from <a href="http://www.meetup.com/Spark-NYC/events/228233164/">NYC Spark Meetup</a>,
+held on the first evening of the Conference.</p>
+
+<h1 id="spark-2-0:78333174891d79199dfc5d40590b6ccd">Spark 2.0</h1>
+
+<p>Some of the main news about Spark 2.0 are</p>
+
+<ul>
+<li>should be available late April - Early May</li>
+<li>(almost) No API changes for 2.0</li>
+<li>Will unifying datasets and dataframes
+
+<ul>
+<li><code>DataFrame = Dataset[Row]</code></li>
+<li>Libraries will accept both interchangeably</li>
+</ul></li>
+</ul>
+
+<h2 id="tungsten:78333174891d79199dfc5d40590b6ccd">Tungsten</h2>
+
+<p>the under-the-hood improver of memory and CPU efficiency for Spark applications.
+Project Tungsten was introduced in Spark 1.4.
+See <a href="https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html">this blog</a> for more information.  Here is what to expect from new releases</p>
+
+<ul>
+<li><strong>Phase I</strong> Spark 2.0
+
+<ul>
+<li>~5x faster</li>
+<li>Improve IO by better pruning data to process</li>
+<li>Native memory management (use less java object and their costly initialization)</li>
+</ul></li>
+<li><strong>Phase II</strong> Spark 2.x
+
+<ul>
+<li>~10x faster</li>
+<li>Spark will work as a compiler: reading the provided code and create it&rsquo;s own optimize version.</li>
+</ul></li>
+</ul>
+
+<h2 id="spark-streaming:78333174891d79199dfc5d40590b6ccd">Spark Streaming</h2>
+
+<p>Processing data in real time will be more integrated with batch applications
+with</p>
+
+<ul>
+<li>Structured stream
+
+<ul>
+<li>will extend dataframe/dataset</li>
+<li>more analysis from stream data</li>
+</ul></li>
+<li>Supports interactive &amp; batch queries (e.g. aggregate data in a stream then serving to JDBC)</li>
+</ul>
+
+<p>(more info on Spark 2.0 <a href="https://spark-summit.org/east-2016/events/keynote-day-2/">here</a>)</p>
+
+<hr />
+
+<h1 id="pipelines:78333174891d79199dfc5d40590b6ccd">Pipelines</h1>
+
+<p>The summit comprised lots of of pipeline talks, two examples shown below are particularly
+interesting for their similarities with our projects at Mediative.</p>
+
+<h2 id="netflix-distributed-time-travel-for-feature-generation:78333174891d79199dfc5d40590b6ccd">Netflix Distributed Time Travel for Feature Generation</h2>
+
+<p>The goal is build a time machine snapshots online services
+and uses the snapshot data offline to reconstruct the inputs
+that a model would have seen online to generate features.</p>
+
+<p>First, an appropriate sample of contexts is selected
+(samples based on properties such as viewing patterns, devices, time spent on the service, region, etc)
+and persisted into S3 (parquet) as represented by the <code>Context Set</code> below.
+Interestingly they also store the confidence level for each snapshot service,
+the percentage of successful data fetched.
+The batch API fetches the associated S3 location of the snapshot data from Cassandra and loads the snapshot data in Spark</p>
+
+
+<figure >
+    
+        <img src="/images/spark-summit-east-2016/netflixSnapshotAPI.png" />
+    
+    
+</figure>
+
+
+<p>here is an example call to their API returning a RDD</p>
+
+<pre><code class="language-scala">val snapshot = new SnapshotDataManager(sqlContext))
+  .withTimestams(1445470140000L)
+  .withContextId(OUTATIME)
+  .getViewingHistory
+</code></pre>
+
+<p>(more info <a href="https://spark-summit.org/east-2016/events/distributed-time-travel-for-feature-generation/">here</a>)</p>
+
+<hr />
+
+<h2 id="real-time-data-pipelines-with-kafka:78333174891d79199dfc5d40590b6ccd">Real Time Data Pipelines with Kafka</h2>
+
+<p>If you have <code>n</code> connectors, it is very likely that you&rsquo;ll end up writing n*n connections.
+Here is a scary examples
+
+<figure >
+    
+        <img src="/images/spark-summit-east-2016/conplexPipeline.png" />
+    
+    
+</figure>
+</p>
+
+<p><strong>Kafka connect&rsquo;s two modes</strong></p>
+
+<ul>
+<li>Source connectors : some system to Kafka</li>
+<li>Synk connectors : From Kafka to some system
+
+<figure >
+    
+        <img src="/images/spark-summit-east-2016/kafka2modes.png" />
+    
+    
+</figure>
+</li>
+</ul>
+
+<p>Kafka&rsquo;s buffer allows to stream to (non-stream) destination like HDFS</p>
+
+
+<figure >
+    
+        <img src="/images/spark-summit-east-2016/kafkaDataIntegration.png" />
+    
+    
+</figure>
+
+
+<p>It is even possible to copy an entire database (suggested partition: by table)</p>
+
+<p>more information <a href="https://spark-summit.org/east-2016/events/building-realtime-data-pipelines-with-kafka-connect-and-spark-streaming/">here</a></p>
+
+<h1 id="machine-learning:78333174891d79199dfc5d40590b6ccd">Machine Learning</h1>
+
+<p>There were many example with MLlib and SparkR and packages like <strong>Sparkling water</strong> (H2O), an Open Sources with tools like customized DataFrames and Notebook.
+The incubating <strong>SystemML</strong> (IBM) translates high-level (R or python)
+aims to optimized code adapting to underlying input formats and physical data representations.</p>
+
+<hr />
+
+<h2 id="tensorspark:78333174891d79199dfc5d40590b6ccd">TensorSpark</h2>
+
+<p>A distributed TensorFlow on Spark (Arimo, Inc.) motivated by TensorFlow (at the time)
+being only released for single-machine.
+Even with a TensorFlow released, TensorSpark might be more appropriate to join with some spark infrastructure.</p>
+
+<p>The figure below represents how an instance of tensorFlow runs on each machines where
+the driver is the parameter server: receiving gradients from workers and broadcast the updated model.</p>
+
+
+<figure >
+    
+        <img src="/images/spark-summit-east-2016/tensorSparkArchitecture.png" />
+    
+    
+</figure>
+
+
+<p>more information <a href="https://spark-summit.org/east-2016/events/distributed-tensor-flow-on-spark-scaling-googles-deep-learning-library/">here</a></p>
+
+<hr />
+
+<h2 id="online-bidding:78333174891d79199dfc5d40590b6ccd">Online bidding</h2>
+
+<p>Of particular interest to Mediative, a talk about real time bidding over display ads with machine learning.</p>
+
+
+<figure >
+    
+        <img src="/images/spark-summit-east-2016/AdbidPipeline.png" />
+    
+    
+</figure>
+
+
+<p>Their pipeline could train multiple models in parallel and choose the most effective one.
+A very nice outcome was the most effective model varies from campaign to campaign as shown below.</p>
+
+<p>
+<figure >
+    
+        <img src="/images/spark-summit-east-2016/AdModelCompare.png" />
+    
+    
+</figure>
+
+more information <a href="https://spark-summit.org/east-2016/events/spark-dataxu-multi-model-machine-learning-for-real-time-bidding-over-display-ads/">here</a></p>
+
+<hr />
+
+<h1 id="visualization:78333174891d79199dfc5d40590b6ccd">Visualization</h1>
+
+<p>Visualisation still mostly rely on (non-scalable) libraries although significant progress
+was shown with integration of ggplot2 with SparkR where 47% of API implemented
+(as shown <a href="https://spark-summit.org/east-2016/events/generalized-linear-models-in-spark-mllib-and-sparkr/">here</a>).
+There is also the incubatin Zoomdate which shows nice promises.
+Meanwhile, better to filter your data and use a non-distributed library.</p>
+
+<hr />
+
+<h1 id="others:78333174891d79199dfc5d40590b6ccd">Others</h1>
+
+<p>A quick mention of interesting subjects</p>
+
+<ul>
+<li><p><a href="https://spark-summit.org/east-2016/events/magellan-spark-as-a-geospatial-analytics-engine/">Magellan-Spark Geospatial analytics</a></p>
+
+<ul>
+<li>Cartesian join : joining polygone and points</li>
+<li>supported formats includes GeoJSON, ESRI, OSM-XML</li>
+</ul></li>
+
+<li><p><a href="https://spark-summit.org/east-2016/events/beyond-collect-and-parallelize-for-tests/">Beyond Collect and Parallelize for Tests</a></p>
+
+<ul>
+<li>Addressing problems of testing at scale</li>
+<li>Comparing RDD, DataFrames, DataSets</li>
+<li>Getting test (big) data</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h1 id="spark-community-edition-beta:78333174891d79199dfc5d40590b6ccd">Spark community edition (beta)</h1>
+
+<p>Finally, Databricks announced a free edition of their very nice service,
+this includes access to 6GB clusters.</p>
+
+<ul>
+<li><p>beta edition available in the coming weeks</p>
+
+<ul>
+<li><a href="http://go.databricks.com/databricks-community-edition-beta-waitlist">waiting list</a></li>
+</ul></li>
+
+<li><p>Includes learning utilities</p></li>
+
+<li><p>See <a href="https://www.youtube.com/watch?v=35Y-rqSMCCA">demo</a></p></li>
+</ul>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://ypg-data.github.io/">Jean-Francois Rajotte</a></h4>
+  
+  <p>Data Scientist</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Montreal, QC</span>
+    <span class="author-link icon-link"><a href="https://github.com/jfraj">https://github.com/jfraj</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=News%20from%20Spark%20Summit%20East&amp;url=https%3a%2f%2fypg-data.github.io%2fpost%2fpost-title%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fypg-data.github.io%2fpost%2fpost-title%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+</section>
+
+
+
+    
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">YPG Data</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://ypg-data.github.io/js/jquery.js"></script>
+    <script type="text/javascript" src="https://ypg-data.github.io/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://ypg-data.github.io/js/index.js"></script>
+    
+</body>
+</html>
+

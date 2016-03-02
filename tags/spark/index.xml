@@ -36,6 +36,270 @@ repository&lt;/a&gt;.&lt;/p&gt;
     </item>
     
     <item>
+      <title>News from Spark Summit East</title>
+      <link>https://ypg-data.github.io/post/post-title/</link>
+      <pubDate>Sun, 28 Feb 2016 21:38:37 -0500</pubDate>
+      
+      <guid>https://ypg-data.github.io/post/post-title/</guid>
+      <description>
+
+&lt;p&gt;Mediative is building a data pipeline on top of Spark
+so I went to &lt;a href=&#34;https://spark-summit.org/east-2016/&#34;&gt;Spark Summit East&lt;/a&gt;
+to see what other people are doing and what&amp;rsquo;s coming.
+There were many conference tracks including Enterprise, Developer and Data Science.
+I mostly attended Data Science talks and below are the highlights.
+Some of this information also came from &lt;a href=&#34;http://www.meetup.com/Spark-NYC/events/228233164/&#34;&gt;NYC Spark Meetup&lt;/a&gt;,
+held on the first evening of the Conference.&lt;/p&gt;
+
+&lt;h1 id=&#34;spark-2-0:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark 2.0&lt;/h1&gt;
+
+&lt;p&gt;Some of the main news about Spark 2.0 are&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;should be available late April - Early May&lt;/li&gt;
+&lt;li&gt;(almost) No API changes for 2.0&lt;/li&gt;
+&lt;li&gt;Will unifying datasets and dataframes
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DataFrame = Dataset[Row]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Libraries will accept both interchangeably&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tungsten:78333174891d79199dfc5d40590b6ccd&#34;&gt;Tungsten&lt;/h2&gt;
+
+&lt;p&gt;the under-the-hood improver of memory and CPU efficiency for Spark applications.
+Project Tungsten was introduced in Spark 1.4.
+See &lt;a href=&#34;https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html&#34;&gt;this blog&lt;/a&gt; for more information.  Here is what to expect from new releases&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Phase I&lt;/strong&gt; Spark 2.0
+
+&lt;ul&gt;
+&lt;li&gt;~5x faster&lt;/li&gt;
+&lt;li&gt;Improve IO by better pruning data to process&lt;/li&gt;
+&lt;li&gt;Native memory management (use less java object and their costly initialization)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Phase II&lt;/strong&gt; Spark 2.x
+
+&lt;ul&gt;
+&lt;li&gt;~10x faster&lt;/li&gt;
+&lt;li&gt;Spark will work as a compiler: reading the provided code and create it&amp;rsquo;s own optimize version.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;spark-streaming:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark Streaming&lt;/h2&gt;
+
+&lt;p&gt;Processing data in real time will be more integrated with batch applications
+with&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Structured stream
+
+&lt;ul&gt;
+&lt;li&gt;will extend dataframe/dataset&lt;/li&gt;
+&lt;li&gt;more analysis from stream data&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Supports interactive &amp;amp; batch queries (e.g. aggregate data in a stream then serving to JDBC)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(more info on Spark 2.0 &lt;a href=&#34;https://spark-summit.org/east-2016/events/keynote-day-2/&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;pipelines:78333174891d79199dfc5d40590b6ccd&#34;&gt;Pipelines&lt;/h1&gt;
+
+&lt;p&gt;The summit comprised lots of of pipeline talks, two examples shown below are particularly
+interesting for their similarities with our projects at Mediative.&lt;/p&gt;
+
+&lt;h2 id=&#34;netflix-distributed-time-travel-for-feature-generation:78333174891d79199dfc5d40590b6ccd&#34;&gt;Netflix Distributed Time Travel for Feature Generation&lt;/h2&gt;
+
+&lt;p&gt;The goal is build a time machine snapshots online services
+and uses the snapshot data offline to reconstruct the inputs
+that a model would have seen online to generate features.&lt;/p&gt;
+
+&lt;p&gt;First, an appropriate sample of contexts is selected
+(samples based on properties such as viewing patterns, devices, time spent on the service, region, etc)
+and persisted into S3 (parquet) as represented by the &lt;code&gt;Context Set&lt;/code&gt; below.
+Interestingly they also store the confidence level for each snapshot service,
+the percentage of successful data fetched.
+The batch API fetches the associated S3 location of the snapshot data from Cassandra and loads the snapshot data in Spark&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/netflixSnapshotAPI.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;here is an example call to their API returning a RDD&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val snapshot = new SnapshotDataManager(sqlContext))
+  .withTimestams(1445470140000L)
+  .withContextId(OUTATIME)
+  .getViewingHistory
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(more info &lt;a href=&#34;https://spark-summit.org/east-2016/events/distributed-time-travel-for-feature-generation/&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;real-time-data-pipelines-with-kafka:78333174891d79199dfc5d40590b6ccd&#34;&gt;Real Time Data Pipelines with Kafka&lt;/h2&gt;
+
+&lt;p&gt;If you have &lt;code&gt;n&lt;/code&gt; connectors, it is very likely that you&amp;rsquo;ll end up writing n*n connections.
+Here is a scary examples
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/conplexPipeline.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Kafka connect&amp;rsquo;s two modes&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Source connectors : some system to Kafka&lt;/li&gt;
+&lt;li&gt;Synk connectors : From Kafka to some system
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/kafka2modes.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Kafka&amp;rsquo;s buffer allows to stream to (non-stream) destination like HDFS&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/kafkaDataIntegration.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;It is even possible to copy an entire database (suggested partition: by table)&lt;/p&gt;
+
+&lt;p&gt;more information &lt;a href=&#34;https://spark-summit.org/east-2016/events/building-realtime-data-pipelines-with-kafka-connect-and-spark-streaming/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;machine-learning:78333174891d79199dfc5d40590b6ccd&#34;&gt;Machine Learning&lt;/h1&gt;
+
+&lt;p&gt;There were many example with MLlib and SparkR and packages like &lt;strong&gt;Sparkling water&lt;/strong&gt; (H2O), an Open Sources with tools like customized DataFrames and Notebook.
+The incubating &lt;strong&gt;SystemML&lt;/strong&gt; (IBM) translates high-level (R or python)
+aims to optimized code adapting to underlying input formats and physical data representations.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;tensorspark:78333174891d79199dfc5d40590b6ccd&#34;&gt;TensorSpark&lt;/h2&gt;
+
+&lt;p&gt;A distributed TensorFlow on Spark (Arimo, Inc.) motivated by TensorFlow (at the time)
+being only released for single-machine.
+Even with a TensorFlow released, TensorSpark might be more appropriate to join with some spark infrastructure.&lt;/p&gt;
+
+&lt;p&gt;The figure below represents how an instance of tensorFlow runs on each machines where
+the driver is the parameter server: receiving gradients from workers and broadcast the updated model.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/tensorSparkArchitecture.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;more information &lt;a href=&#34;https://spark-summit.org/east-2016/events/distributed-tensor-flow-on-spark-scaling-googles-deep-learning-library/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;online-bidding:78333174891d79199dfc5d40590b6ccd&#34;&gt;Online bidding&lt;/h2&gt;
+
+&lt;p&gt;Of particular interest to Mediative, a talk about real time bidding over display ads with machine learning.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/AdbidPipeline.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;Their pipeline could train multiple models in parallel and choose the most effective one.
+A very nice outcome was the most effective model varies from campaign to campaign as shown below.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/AdModelCompare.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+more information &lt;a href=&#34;https://spark-summit.org/east-2016/events/spark-dataxu-multi-model-machine-learning-for-real-time-bidding-over-display-ads/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;visualization:78333174891d79199dfc5d40590b6ccd&#34;&gt;Visualization&lt;/h1&gt;
+
+&lt;p&gt;Visualisation still mostly rely on (non-scalable) libraries although significant progress
+was shown with integration of ggplot2 with SparkR where 47% of API implemented
+(as shown &lt;a href=&#34;https://spark-summit.org/east-2016/events/generalized-linear-models-in-spark-mllib-and-sparkr/&#34;&gt;here&lt;/a&gt;).
+There is also the incubatin Zoomdate which shows nice promises.
+Meanwhile, better to filter your data and use a non-distributed library.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;others:78333174891d79199dfc5d40590b6ccd&#34;&gt;Others&lt;/h1&gt;
+
+&lt;p&gt;A quick mention of interesting subjects&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://spark-summit.org/east-2016/events/magellan-spark-as-a-geospatial-analytics-engine/&#34;&gt;Magellan-Spark Geospatial analytics&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cartesian join : joining polygone and points&lt;/li&gt;
+&lt;li&gt;supported formats includes GeoJSON, ESRI, OSM-XML&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://spark-summit.org/east-2016/events/beyond-collect-and-parallelize-for-tests/&#34;&gt;Beyond Collect and Parallelize for Tests&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Addressing problems of testing at scale&lt;/li&gt;
+&lt;li&gt;Comparing RDD, DataFrames, DataSets&lt;/li&gt;
+&lt;li&gt;Getting test (big) data&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;spark-community-edition-beta:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark community edition (beta)&lt;/h1&gt;
+
+&lt;p&gt;Finally, Databricks announced a free edition of their very nice service,
+this includes access to 6GB clusters.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;beta edition available in the coming weeks&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://go.databricks.com/databricks-community-edition-beta-waitlist&#34;&gt;waiting list&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Includes learning utilities&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;See &lt;a href=&#34;https://www.youtube.com/watch?v=35Y-rqSMCCA&#34;&gt;demo&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Installing a Custom Spark Version on CDH</title>
       <link>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</link>
       <pubDate>Sat, 13 Feb 2016 19:54:46 -0500</pubDate>
