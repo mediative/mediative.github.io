@@ -5,26 +5,26 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  	<meta property="og:title" content=" Mesos Stack version 0.4.0 &middot;  YPG Data" />
+  	<meta property="og:title" content=" Sparrow version 0.2.0 &middot;  YPG Data" />
   	<meta property="og:site_name" content="YPG Data" />
-  	<meta property="og:url" content="https://ypg-data.github.io/post/mesos-stack-version-0.4.0/" />
+  	<meta property="og:url" content="https://ypg-data.github.io/post/2016/02/sparrow-version-0.2.0/" />
 
     
   	<meta property="og:type" content="article" />
 
-    <meta property="og:article:published_time" content="2016-02-24T14:25:03-05:00" />
+    <meta property="og:article:published_time" content="2016-02-29T21:44:36-05:00" />
 
     
-    <meta property="og:article:tag" content="mesos-stack" />
+    <meta property="og:article:tag" content="sparrow" />
     
-    <meta property="og:article:tag" content="mesos" />
+    <meta property="og:article:tag" content="spark" />
     
     <meta property="og:article:tag" content="release" />
     
     
 
   <title>
-     Mesos Stack version 0.4.0 &middot;  YPG Data
+     Sparrow version 0.2.0 &middot;  YPG Data
   </title>
 
     <meta name="description" content="" />
@@ -48,7 +48,7 @@
     
     <meta name="generator" content="Hugo 0.16-DEV" />
 
-    <link rel="canonical" href="https://ypg-data.github.io/post/mesos-stack-version-0.4.0/" />
+    <link rel="canonical" href="https://ypg-data.github.io/post/2016/02/sparrow-version-0.2.0/" />
 
     
 
@@ -92,8 +92,8 @@
 
 
 
-<header class="main-header post-head no-cover">
-  <nav class="main-nav clearfix">
+<header class="main-header post-head" style="background-image: url(https://ypg-data.github.io/images/sparrow.jpg)">
+  <nav class="main-nav overlay clearfix">
 
 
   
@@ -113,19 +113,19 @@
   <article class="post post">
 
     <header class="post-header">
-        <h1 class="post-title">Mesos Stack version 0.4.0</h1>
+        <h1 class="post-title">Sparrow version 0.2.0</h1>
         <small></small>
 
         <section class="post-meta">
         
-          <time class="post-date" datetime="2016-02-24T14:25:03-05:00">
-            Feb 24, 2016
+          <time class="post-date" datetime="2016-02-29T21:44:36-05:00">
+            Feb 29, 2016
           </time>
         
          
-          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/mesos-stack/">#mesos-stack</a></span>
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/sparrow/">#sparrow</a></span>
          
-          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/mesos/">#mesos</a></span>
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/spark/">#spark</a></span>
          
           <span class="post-tag small"><a href="https://ypg-data.github.io/tags/release/">#release</a></span>
          
@@ -135,24 +135,20 @@
     <section class="post-content">
       
 
-<p>Version <a href="https://github.com/ypg-data/mesos-stack/releases/tag/0.4.0">0.4.0</a> has
-been released of our Mesos stack. It updates Marathon-LB to use an upstream
-released version and adds a new GlusterFS role to distribute files across the
-Mesos cluster. Also enjoy the new and improved
-<a href="https://ypg-data.github.io/mesos-stack/">documentation</a> which is generated from
-the Ansible role files.</p>
+<p>Sparrow version <a href="https://github.com/ypg-data/sparrow/releases/tag/0.2.0">0.2.0</a>
+is now available with updated dependency on Spark 1.6.0.</p>
 
-<h2 id="release-notes:f53641a3a79f315fc239526fa8f57943">Release notes</h2>
+<p>It&rsquo;s both available as a <a href="http://spark-packages.org/package/ypg-data/sparrow">Spark
+package</a> and from the <a href="https://github.com/ypg-data/sparrow/blob/6589d0f3302520d284461e0aced147d9e14ddb7d/README.md#getting-started">YPG
+Data Bintray
+repository</a>.</p>
 
-<p>Improvements:</p>
+<h2 id="release-notes:c39fc117d47053a4b538eba8f1c5a2fd">Release notes</h2>
 
 <ul>
-<li>mesos-master, mesos-agent: Use fully qualified host names.</li>
-<li>Generate Ansible role documentation from YAML files so they are always up to
-date.</li>
-<li>marathon-lb: Upgrade to version 1.1.1.</li>
-<li>common: Disable IPv6 on all cluster nodes.</li>
-<li>New glusterfs role which adds persistent storage across nodes.</li>
+<li>Bump Spark version to 1.6.0</li>
+<li>Test against Scala 2.10.6 on Travis</li>
+<li>Bump the Macro Paradise plugin to 2.1.0</li>
 </ul>
 
     </section>
@@ -185,11 +181,11 @@ date.</li>
     
 <section class="share">
   <h4>Share this post</h4>
-  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Mesos%20Stack%20version%200.4.0&amp;url=https%3a%2f%2fypg-data.github.io%2fpost%2fmesos-stack-version-0.4.0%2f"
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Sparrow%20version%200.2.0&amp;url=https%3a%2f%2fypg-data.github.io%2fpost%2f2016%2f02%2fsparrow-version-0.2.0%2f"
       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
       <span class="hidden">Twitter</span>
   </a>
-  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fypg-data.github.io%2fpost%2fmesos-stack-version-0.4.0%2f"
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fypg-data.github.io%2fpost%2f2016%2f02%2fsparrow-version-0.2.0%2f"
       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
       <span class="hidden">Facebook</span>
   </a>

@@ -11,10 +11,10 @@
     
     <item>
       <title>Running Zeppelin on CDH</title>
-      <link>https://ypg-data.github.io/post/running-zeppelin-on-cloudera/</link>
+      <link>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</link>
       <pubDate>Fri, 26 Feb 2016 14:46:46 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/running-zeppelin-on-cloudera/</guid>
+      <guid>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
       <description>
 
 &lt;h2 id=&#34;download-and-build-zeppelin:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
@@ -46,7 +46,7 @@ enabled using the Maven profile corresponding to the Hadoop version found above:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note we are assuming that you are using a custom Spark version as described in
-&lt;a href=&#34;https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;installing-zeppelin-on-the-edge-node:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
 
@@ -98,10 +98,10 @@ export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
     
     <item>
       <title>Installing a Custom Spark Version on CDH</title>
-      <link>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</link>
+      <link>https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</link>
       <pubDate>Sat, 13 Feb 2016 19:54:46 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</guid>
+      <guid>https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</guid>
       <description>&lt;p&gt;Since Spark can be run as a YARN application it is possible to run a Spark
 version other than the one provided by the Cloudera platform (CDH). This
 document lists the instructions for how to compile a specific Spark version

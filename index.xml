@@ -11,10 +11,10 @@
     
     <item>
       <title>Sparrow version 0.2.0</title>
-      <link>https://ypg-data.github.io/post/sparrow-version-0.2.0/</link>
+      <link>https://ypg-data.github.io/post/2016/02/sparrow-version-0.2.0/</link>
       <pubDate>Mon, 29 Feb 2016 21:44:36 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/sparrow-version-0.2.0/</guid>
+      <guid>https://ypg-data.github.io/post/2016/02/sparrow-version-0.2.0/</guid>
       <description>
 
 &lt;p&gt;Sparrow version &lt;a href=&#34;https://github.com/ypg-data/sparrow/releases/tag/0.2.0&#34;&gt;0.2.0&lt;/a&gt;
@@ -37,10 +37,10 @@ repository&lt;/a&gt;.&lt;/p&gt;
     
     <item>
       <title>News from Spark Summit East</title>
-      <link>https://ypg-data.github.io/post/post-title/</link>
+      <link>https://ypg-data.github.io/post/2016/02/news-from-spark-summit-east/</link>
       <pubDate>Sun, 28 Feb 2016 21:38:37 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/post-title/</guid>
+      <guid>https://ypg-data.github.io/post/2016/02/news-from-spark-summit-east/</guid>
       <description>
 
 &lt;p&gt;Mediative is building a data pipeline on top of Spark
@@ -301,10 +301,10 @@ this includes access to 6GB clusters.&lt;/p&gt;
     
     <item>
       <title>Running Zeppelin on CDH</title>
-      <link>https://ypg-data.github.io/post/running-zeppelin-on-cloudera/</link>
+      <link>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</link>
       <pubDate>Fri, 26 Feb 2016 14:46:46 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/running-zeppelin-on-cloudera/</guid>
+      <guid>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
       <description>
 
 &lt;h2 id=&#34;download-and-build-zeppelin:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
@@ -336,7 +336,7 @@ enabled using the Maven profile corresponding to the Hadoop version found above:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note we are assuming that you are using a custom Spark version as described in
-&lt;a href=&#34;https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;installing-zeppelin-on-the-edge-node:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
 
@@ -388,10 +388,10 @@ export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
     
     <item>
       <title>Mesos Stack version 0.4.0</title>
-      <link>https://ypg-data.github.io/post/mesos-stack-version-0.4.0/</link>
+      <link>https://ypg-data.github.io/post/2016/02/mesos-stack-version-0.4.0/</link>
       <pubDate>Wed, 24 Feb 2016 14:25:03 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/mesos-stack-version-0.4.0/</guid>
+      <guid>https://ypg-data.github.io/post/2016/02/mesos-stack-version-0.4.0/</guid>
       <description>
 
 &lt;p&gt;Version &lt;a href=&#34;https://github.com/ypg-data/mesos-stack/releases/tag/0.4.0&#34;&gt;0.4.0&lt;/a&gt; has
@@ -418,10 +418,10 @@ date.&lt;/li&gt;
     
     <item>
       <title>Installing a Custom Spark Version on CDH</title>
-      <link>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</link>
+      <link>https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</link>
       <pubDate>Sat, 13 Feb 2016 19:54:46 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/installing-a-custom-spark-version-on-cloudera/</guid>
+      <guid>https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</guid>
       <description>&lt;p&gt;Since Spark can be run as a YARN application it is possible to run a Spark
 version other than the one provided by the Cloudera platform (CDH). This
 document lists the instructions for how to compile a specific Spark version

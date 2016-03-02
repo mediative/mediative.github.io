@@ -5,26 +5,26 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  	<meta property="og:title" content=" Sparrow version 0.2.0 &middot;  YPG Data" />
+  	<meta property="og:title" content=" Installing a Custom Spark Version on CDH &middot;  YPG Data" />
   	<meta property="og:site_name" content="YPG Data" />
-  	<meta property="og:url" content="https://ypg-data.github.io/post/sparrow-version-0.2.0/" />
+  	<meta property="og:url" content="https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/" />
 
     
   	<meta property="og:type" content="article" />
 
-    <meta property="og:article:published_time" content="2016-02-29T21:44:36-05:00" />
+    <meta property="og:article:published_time" content="2016-02-13T19:54:46-05:00" />
 
-    
-    <meta property="og:article:tag" content="sparrow" />
     
     <meta property="og:article:tag" content="spark" />
     
-    <meta property="og:article:tag" content="release" />
+    <meta property="og:article:tag" content="cloudera" />
+    
+    <meta property="og:article:tag" content="cdh" />
     
     
 
   <title>
-     Sparrow version 0.2.0 &middot;  YPG Data
+     Installing a Custom Spark Version on CDH &middot;  YPG Data
   </title>
 
     <meta name="description" content="" />
@@ -48,7 +48,7 @@
     
     <meta name="generator" content="Hugo 0.16-DEV" />
 
-    <link rel="canonical" href="https://ypg-data.github.io/post/sparrow-version-0.2.0/" />
+    <link rel="canonical" href="https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/" />
 
     
 
@@ -92,7 +92,7 @@
 
 
 
-<header class="main-header post-head" style="background-image: url(https://ypg-data.github.io/images/sparrow.jpg)">
+<header class="main-header post-head" style="background-image: url(https://ypg-data.github.io/images/sparks.jpg)">
   <nav class="main-nav overlay clearfix">
 
 
@@ -113,43 +113,89 @@
   <article class="post post">
 
     <header class="post-header">
-        <h1 class="post-title">Sparrow version 0.2.0</h1>
+        <h1 class="post-title">Installing a Custom Spark Version on CDH</h1>
         <small></small>
 
         <section class="post-meta">
         
-          <time class="post-date" datetime="2016-02-29T21:44:36-05:00">
-            Feb 29, 2016
+          <time class="post-date" datetime="2016-02-13T19:54:46-05:00">
+            Feb 13, 2016
           </time>
         
          
-          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/sparrow/">#sparrow</a></span>
-         
           <span class="post-tag small"><a href="https://ypg-data.github.io/tags/spark/">#spark</a></span>
          
-          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/release/">#release</a></span>
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/cloudera/">#cloudera</a></span>
+         
+          <span class="post-tag small"><a href="https://ypg-data.github.io/tags/cdh/">#cdh</a></span>
          
         </section>
     </header>
 
     <section class="post-content">
-      
+      <p>Since Spark can be run as a YARN application it is possible to run a Spark
+version other than the one provided by the Cloudera platform (CDH). This
+document lists the instructions for how to compile a specific Spark version
+against the Hadoop version supported by CDH. The instructions are based on the
+post <a href="https://www.linkedin.com/pulse/running-spark-151-cdh-deenar-toraskar-cfa">Running Spark 1.5.1 on
+CDH</a>.</p>
 
-<p>Sparrow version <a href="https://github.com/ypg-data/sparrow/releases/tag/0.2.0">0.2.0</a>
-is now available with updated dependency on Spark 1.6.0.</p>
+<ol>
+<li><p>Determine the version of CDH and Hadoop by running the following command on
+the edge node:</p>
 
-<p>It&rsquo;s both available as a <a href="http://spark-packages.org/package/ypg-data/sparrow">Spark
-package</a> and from the <a href="https://github.com/ypg-data/sparrow/blob/6589d0f3302520d284461e0aced147d9e14ddb7d/README.md#getting-started">YPG
-Data Bintray
-repository</a>.</p>
+<pre><code>$ hadoop version
+Hadoop 2.6.0-cdh5.4.8
+...
+</code></pre></li>
 
-<h2 id="release-notes:c39fc117d47053a4b538eba8f1c5a2fd">Release notes</h2>
+<li><p><a href="http://spark.apache.org/downloads.html">Download Spark</a> and extract the
+sources.</p></li>
 
-<ul>
-<li>Bump Spark version to 1.6.0</li>
-<li>Test against Scala 2.10.6 on Travis</li>
-<li>Bump the Macro Paradise plugin to 2.1.0</li>
-</ul>
+<li><p><a href="http://spark.apache.org/docs/latest/building-spark.html">Build Spark</a> by
+opening the distribution directory in the shell and running the following
+command using the CDH and Hadoop version from step 1:</p>
+
+<pre><code>$ ./make-distribution.sh --tgz --name cdh5.4.8 -Pyarn \
+     -Phadoop-2.6 -Phadoop-provided -Dhadoop.version=2.6.0-cdh5.4.8 \
+     -Phive -Phive-thriftserver
+</code></pre>
+
+<p>Note that <code>-Phadoop-provided</code> enables the profile to build the assembly
+without including Hadoop-ecosystem dependencies provided by Cloudera. To
+compile with Spark 2.11 support first run:</p>
+
+<pre><code>$ ./dev/change-scala-version.sh 2.11
+</code></pre>
+
+<p>and pass <code>-Dscala-2.11</code> to <code>make-distribution.sh</code>.</p></li>
+
+<li><p>Copy the resulting <code>tgz</code> file to the edge node:</p>
+
+<pre><code>$ scp spark-x.x.x-bin-cdh5.4.8.tgz user@edge-node:
+</code></pre></li>
+
+<li><p>Connect to the edge node</p></li>
+
+<li><p>Extract the <code>tgz</code> file</p></li>
+
+<li><p><code>cd</code> into the custom Spark distribution and configure the custom Spark
+distribution:</p>
+
+<pre><code> $ cp -R /etc/spark/conf/* conf/
+ # Change SPARK_HOME to point to folder with custom Spark distrobution
+ $ sed -i &quot;s#\(.*SPARK_HOME\)=.*#\1=$(pwd)#&quot; conf/spark-env.sh
+ # Tell YARN which Spark JAR to use
+ $ echo &quot;spark.yarn.jar=$(pwd)/$(ls lib/spark-assembly-*.jar)&quot; &gt;&gt; conf/spark-defaults.conf
+ $ cp /etc/hive/conf/hive-site.xml conf/
+</code></pre></li>
+
+<li><p>Test the custom Spark distribution:</p>
+
+<pre><code> $ ./bin/run-example SparkPi 10 --master yarn-client
+ $ ./bin/spark-shell --master yarn-client
+</code></pre></li>
+</ol>
 
     </section>
 
@@ -181,11 +227,11 @@ repository</a>.</p>
     
 <section class="share">
   <h4>Share this post</h4>
-  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Sparrow%20version%200.2.0&amp;url=https%3a%2f%2fypg-data.github.io%2fpost%2fsparrow-version-0.2.0%2f"
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Installing%20a%20Custom%20Spark%20Version%20on%20CDH&amp;url=https%3a%2f%2fypg-data.github.io%2fpost%2f2016%2f02%2finstalling-a-custom-spark-version-on-cdh%2f"
       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
       <span class="hidden">Twitter</span>
   </a>
-  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fypg-data.github.io%2fpost%2fsparrow-version-0.2.0%2f"
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fypg-data.github.io%2fpost%2f2016%2f02%2finstalling-a-custom-spark-version-on-cdh%2f"
       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
       <span class="hidden">Facebook</span>
   </a>
