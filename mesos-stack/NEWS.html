@@ -57,7 +57,7 @@
         data-chapter-title="Release Notes"
         data-filepath="NEWS.md"
         data-basepath="."
-        data-revision="Tue Mar 01 2016 00:59:23 GMT+0000 (UTC)"
+        data-revision="Thu Mar 17 2016 17:43:24 GMT+0000 (UTC)"
         data-innerlanguage="">
     
 
@@ -294,29 +294,14 @@
             
         </li>
     
-        <li class="chapter " data-level="3.11" data-path="roles/mesos-agent.html">
-            
-                
-                    <a href="./roles/mesos-agent.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.11.</b>
-                        
-                        Mesos Agent
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="3.12" data-path="roles/mesos-dns.html">
+        <li class="chapter " data-level="3.11" data-path="roles/mesos-dns.html">
             
                 
                     <a href="./roles/mesos-dns.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.12.</b>
+                            <b>3.11.</b>
                         
                         Mesos DNS
                     </a>
@@ -324,16 +309,31 @@
             
         </li>
     
-        <li class="chapter " data-level="3.13" data-path="roles/mesos-master.html">
+        <li class="chapter " data-level="3.12" data-path="roles/mesos-master.html">
             
                 
                     <a href="./roles/mesos-master.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.13.</b>
+                            <b>3.12.</b>
                         
                         Mesos Master
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.13" data-path="roles/mesos-slave.html">
+            
+                
+                    <a href="./roles/mesos-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                        Mesos Agent
                     </a>
             
             
@@ -426,7 +426,7 @@
 <h2 id="040">0.4.0</h2>
 <p>Improvements:</p>
 <ul>
-<li>mesos-master, mesos-agent: Use fully qualified host names.</li>
+<li>mesos-master, mesos-slave: Use fully qualified host names.</li>
 <li>Generate Ansible role documentation from YAML files so they are always up to
 date.</li>
 <li>marathon-lb: Upgrade to version 1.1.1.</li>
@@ -447,7 +447,7 @@ date.</li>
 <h2 id="020">0.2.0</h2>
 <p>Improvements:</p>
 <ul>
-<li>mesos-agent: Support CentOS 6.5 with docker containerizer.</li>
+<li>mesos-slave: Support CentOS 6.5 with docker containerizer.</li>
 <li>Add support for Mesos agent and framework authentication.</li>
 <li>Enable HTTP authentication for Marathon and Chronos.</li>
 </ul>
@@ -455,7 +455,7 @@ date.</li>
 <ul>
 <li>mesos-dns: Remove <code>netinfo</code> from <code>IPSources</code> to fix Docker tasks becoming
 unreachable.</li>
-<li>mesos-agent: Store logs in <code>/var/log/mesos</code> and state files in <code>/mnt/mesos</code>
+<li>mesos-slave: Store logs in <code>/var/log/mesos</code> and state files in <code>/log/mesos</code>
 so they can be analyzed after rebooting a node.</li>
 <li>docker-engine: Use APT repo key hosted on apt.dockerproject.org</li>
 </ul>
