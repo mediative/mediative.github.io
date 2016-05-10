@@ -33,7 +33,7 @@
     "tag": "0.5.8",
     "commit": "6ee298dc7d5913ea065b92e736184edcc05b6c74"
   },
-  "_source": "git://github.com/knsv/mermaid.git",
+  "_source": "https://github.com/knsv/mermaid.git",
   "_target": "~0.5.1",
   "_originalSource": "mermaid"
 }
