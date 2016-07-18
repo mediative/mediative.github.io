@@ -25,7 +25,7 @@ I mostly attended Data Science talks and below are the highlights.
 Some of this information also came from &lt;a href=&#34;http://www.meetup.com/Spark-NYC/events/228233164/&#34;&gt;NYC Spark Meetup&lt;/a&gt;,
 held on the first evening of the Conference.&lt;/p&gt;
 
-&lt;h1 id=&#34;spark-2-0:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark 2.0&lt;/h1&gt;
+&lt;h1 id=&#34;spark-2-0&#34;&gt;Spark 2.0&lt;/h1&gt;
 
 &lt;p&gt;Some of the main news about Spark 2.0 are&lt;/p&gt;
 
@@ -40,7 +40,7 @@ held on the first evening of the Conference.&lt;/p&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;tungsten:78333174891d79199dfc5d40590b6ccd&#34;&gt;Tungsten&lt;/h2&gt;
+&lt;h2 id=&#34;tungsten&#34;&gt;Tungsten&lt;/h2&gt;
 
 &lt;p&gt;the under-the-hood improver of memory and CPU efficiency for Spark applications.
 Project Tungsten was introduced in Spark 1.4.
@@ -62,7 +62,7 @@ See &lt;a href=&#34;https://databricks.com/blog/2015/04/28/project-tungsten-brin
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;spark-streaming:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark Streaming&lt;/h2&gt;
+&lt;h2 id=&#34;spark-streaming&#34;&gt;Spark Streaming&lt;/h2&gt;
 
 &lt;p&gt;Processing data in real time will be more integrated with batch applications
 with&lt;/p&gt;
@@ -81,12 +81,12 @@ with&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;pipelines:78333174891d79199dfc5d40590b6ccd&#34;&gt;Pipelines&lt;/h1&gt;
+&lt;h1 id=&#34;pipelines&#34;&gt;Pipelines&lt;/h1&gt;
 
 &lt;p&gt;The summit comprised lots of of pipeline talks, two examples shown below are particularly
 interesting for their similarities with our projects at Mediative.&lt;/p&gt;
 
-&lt;h2 id=&#34;netflix-distributed-time-travel-for-feature-generation:78333174891d79199dfc5d40590b6ccd&#34;&gt;Netflix Distributed Time Travel for Feature Generation&lt;/h2&gt;
+&lt;h2 id=&#34;netflix-distributed-time-travel-for-feature-generation&#34;&gt;Netflix Distributed Time Travel for Feature Generation&lt;/h2&gt;
 
 &lt;p&gt;The goal is build a time machine snapshots online services
 and uses the snapshot data offline to reconstruct the inputs
@@ -120,7 +120,7 @@ The batch API fetches the associated S3 location of the snapshot data from Cassa
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;real-time-data-pipelines-with-kafka:78333174891d79199dfc5d40590b6ccd&#34;&gt;Real Time Data Pipelines with Kafka&lt;/h2&gt;
+&lt;h2 id=&#34;real-time-data-pipelines-with-kafka&#34;&gt;Real Time Data Pipelines with Kafka&lt;/h2&gt;
 
 &lt;p&gt;If you have &lt;code&gt;n&lt;/code&gt; connectors, it is very likely that you&amp;rsquo;ll end up writing n*n connections.
 Here is a scary examples
@@ -163,7 +163,7 @@ Here is a scary examples
 
 &lt;p&gt;more information &lt;a href=&#34;https://spark-summit.org/east-2016/events/building-realtime-data-pipelines-with-kafka-connect-and-spark-streaming/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;machine-learning:78333174891d79199dfc5d40590b6ccd&#34;&gt;Machine Learning&lt;/h1&gt;
+&lt;h1 id=&#34;machine-learning&#34;&gt;Machine Learning&lt;/h1&gt;
 
 &lt;p&gt;There were many example with MLlib and SparkR and packages like &lt;strong&gt;Sparkling water&lt;/strong&gt; (H2O), an Open Sources with tools like customized DataFrames and Notebook.
 The incubating &lt;strong&gt;SystemML&lt;/strong&gt; (IBM) translates high-level (R or python)
@@ -171,7 +171,7 @@ aims to optimized code adapting to underlying input formats and physical data re
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;tensorspark:78333174891d79199dfc5d40590b6ccd&#34;&gt;TensorSpark&lt;/h2&gt;
+&lt;h2 id=&#34;tensorspark&#34;&gt;TensorSpark&lt;/h2&gt;
 
 &lt;p&gt;A distributed TensorFlow on Spark (Arimo, Inc.) motivated by TensorFlow (at the time)
 being only released for single-machine.
@@ -193,7 +193,7 @@ the driver is the parameter server: receiving gradients from workers and broadca
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;online-bidding:78333174891d79199dfc5d40590b6ccd&#34;&gt;Online bidding&lt;/h2&gt;
+&lt;h2 id=&#34;online-bidding&#34;&gt;Online bidding&lt;/h2&gt;
 
 &lt;p&gt;Of particular interest to Mediative, a talk about real time bidding over display ads with machine learning.&lt;/p&gt;
 
@@ -221,7 +221,7 @@ more information &lt;a href=&#34;https://spark-summit.org/east-2016/events/spark
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;visualization:78333174891d79199dfc5d40590b6ccd&#34;&gt;Visualization&lt;/h1&gt;
+&lt;h1 id=&#34;visualization&#34;&gt;Visualization&lt;/h1&gt;
 
 &lt;p&gt;Visualisation still mostly rely on (non-scalable) libraries although significant progress
 was shown with integration of ggplot2 with SparkR where 47% of API implemented
@@ -231,7 +231,7 @@ Meanwhile, better to filter your data and use a non-distributed library.&lt;/p&g
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;others:78333174891d79199dfc5d40590b6ccd&#34;&gt;Others&lt;/h1&gt;
+&lt;h1 id=&#34;others&#34;&gt;Others&lt;/h1&gt;
 
 &lt;p&gt;A quick mention of interesting subjects&lt;/p&gt;
 
@@ -254,7 +254,7 @@ Meanwhile, better to filter your data and use a non-distributed library.&lt;/p&g
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;spark-community-edition-beta:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark community edition (beta)&lt;/h1&gt;
+&lt;h1 id=&#34;spark-community-edition-beta&#34;&gt;Spark community edition (beta)&lt;/h1&gt;
 
 &lt;p&gt;Finally, Databricks announced a free edition of their very nice service,
 this includes access to 6GB clusters.&lt;/p&gt;

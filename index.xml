@@ -6,8 +6,141 @@
     <description>Recent content on YPG Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Feb 2016 21:44:36 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 10 Jul 2016 20:47:14 -0400</lastBuildDate>
     <atom:link href="https://ypg-data.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Simple Spark ml pipeline</title>
+      <link>https://ypg-data.github.io/post/2016/07/simple-spark-ml-pipeline/</link>
+      <pubDate>Sun, 10 Jul 2016 20:47:14 -0400</pubDate>
+      
+      <guid>https://ypg-data.github.io/post/2016/07/simple-spark-ml-pipeline/</guid>
+      <description>
+
+&lt;p&gt;Mediative recently hosted a &lt;a href=&#34;http://www.meetup.com/Montreal-Apache-Spark-Meetup/events/231285569/&#34;&gt;Apache Spark Montreal Meetup&lt;/a&gt;&amp;rsquo;s project night where some of us decided to create a simple ML pipeline.
+To spare the installation of Spark, we used the &lt;a href=&#34;https://databricks.com/try-databricks&#34;&gt;Databricks community edition&lt;/a&gt;.
+Since the goal was to see if we could make it work,
+we wanted to use data that we knew was correlated.
+But to make the project a little more fun,
+we decided to explore something else than the usual &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_set#Classic_data_sets&#34;&gt;data sets&lt;/a&gt;
+so we went for the Dow Jones and Nasdaq.
+In the wealth of all &lt;code&gt;R&lt;/code&gt; packages, one can find the &lt;a href=&#34;https://cran.r-project.org/web/packages/quantmod/quantmod.pdf&#34;&gt;quantmod package&lt;/a&gt; to access financial data.&lt;/p&gt;
+
+&lt;h2 id=&#34;getting-data&#34;&gt;Getting data&lt;/h2&gt;
+
+&lt;p&gt;The notebook was created for &lt;code&gt;Scala&lt;/code&gt; language, so we used the &lt;code&gt;%r&lt;/code&gt; magic to install and use the &lt;code&gt;R&lt;/code&gt; package to access the data.  And while we were at it, we merge both data sets right away:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;%r
+install.packages(&amp;quot;quantmod&amp;quot;)
+library(&amp;quot;quantmod&amp;quot;)
+
+## NASDAQ
+nsd&amp;lt;-as.data.frame(getSymbols(Symbols = &amp;quot;^NDX&amp;quot;,
+    src = &amp;quot;yahoo&amp;quot;, from = &amp;quot;2015-01-01&amp;quot;,to = &amp;quot;2016-01-01&amp;quot;, env = NULL))
+## Dow Jones
+dji&amp;lt;-as.data.frame(getSymbols(Symbols = &amp;quot;^DJI&amp;quot;,
+    src = &amp;quot;yahoo&amp;quot;, from = &amp;quot;2015-01-01&amp;quot;,to = &amp;quot;2016-01-01&amp;quot;, env = NULL))
+
+## Adding the date as a column (in the above they are index and are lost when a table is created)
+nsd$date&amp;lt;-rownames(nsd)
+dji$date&amp;lt;-rownames(dji)
+
+## Merge the tables together on date
+mrgIndx&amp;lt;-merge(nsd, dji)
+
+dfIndx &amp;lt;- createDataFrame(sqlContext, mrgIndx)
+registerTempTable(dfIndx, &amp;quot;testIndx&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The last line register the dataframe as a (temporary) table to make it available outside of the &lt;code&gt;R&lt;/code&gt; scope.&lt;/p&gt;
+
+&lt;p&gt;The following (default) scala cell will create a dataframe back from this table.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val df = sqlContext.sql(&amp;quot;SELECT * FROM testIndx&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;looking-at-the-data&#34;&gt;Looking at the data&lt;/h2&gt;
+
+&lt;p&gt;Of all the fields, we will only consider the &lt;code&gt;date&lt;/code&gt; and the adjusted Nasdaq,&lt;code&gt;NDX_Adjusted&lt;/code&gt;, and Dow Jones, &lt;code&gt;DJI_Adjusted&lt;/code&gt; values.  Why adjusted? No reason, so why not!  Let see if they are correlated and we can have hope to predict one with the other:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.sql.functions.lit
+display(df.withColumn(&amp;quot;NDXTimes5&amp;quot;, $&amp;quot;NDX_Adjusted&amp;quot;.cast(DoubleType).multiply(lit(5))))
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/simple-ml-pipeline/djiNndx5.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;No fancy statistical tools are needed to see that these two curves are correlated. The Nasdaq value has been scaled up by five (using the imported &lt;code&gt;lit&lt;/code&gt; function) to make the comparison more obvious, but this scaling will not be used in the training.  Hopefully, even a basic model can take care of that.&lt;/p&gt;
+
+&lt;h2 id=&#34;preparing-the-data-and-the-model&#34;&gt;Preparing the data and the model&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s keep only the fields that we will need&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val data = df.withColumn(&amp;quot;NDX&amp;quot;, $&amp;quot;NDX_Adjusted&amp;quot;)
+.withColumn(&amp;quot;DJI&amp;quot;, $&amp;quot;DJI_Adjusted&amp;quot;)
+.select(&amp;quot;NDX&amp;quot;, &amp;quot;DJI&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And let&amp;rsquo;s keep a random test subsample for testing purpose, the rest will be use for training the model.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val Array(training, test) = data.randomSplit(Array(0.75, 0.25), seed = 12345)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We use the &lt;code&gt;VectorAssembler&lt;/code&gt; to create the feature vector used by the model.  We want to predict the Dow Jones with the Nasdaq (&lt;code&gt;NDX&lt;/code&gt;), so the latter will be our feature, which we will wisely call &lt;code&gt;features&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.ml.feature.VectorAssembler
+val assembler = new VectorAssembler()
+  .setInputCols(Array(&amp;quot;NDX&amp;quot;))
+  .setOutputCol(&amp;quot;features&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We will also need a model to learn with, for such a simple task, let&amp;rsquo;s use a simple linear regression where we define the Dow Jones (&lt;code&gt;DJI&lt;/code&gt;) as the target we want to learn on (that is called &lt;code&gt;label&lt;/code&gt; in &lt;code&gt;ml&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.ml.regression.LinearRegression
+val lr = new LinearRegression()
+  .setLabelCol(&amp;quot;DJI&amp;quot;)
+  .setFeaturesCol(&amp;quot;features&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;set-up-the-pipeline&#34;&gt;Set up the pipeline&lt;/h2&gt;
+
+&lt;p&gt;Now that we have all the elements, we can easily assemble them with the &lt;code&gt;pipeline&lt;/code&gt; functionality.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import org.apache.spark.ml.Pipeline
+val steps: Array[org.apache.spark.ml.PipelineStage] = Array(assembler, lr)
+val pipeline = new Pipeline().setStages(steps)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;fitting-the-model&#34;&gt;Fitting the model&lt;/h2&gt;
+
+&lt;p&gt;Preparing data and training is done with a single call of the pipeline&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val myModel = pipeline.fit(training)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can now see how well the model works by comparing its prediction with the actual Dow Jones values&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;display(myModel.transform(test).select(&amp;quot;prediction&amp;quot;, &amp;quot;DJI&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://ypg-data.github.io/images/simple-ml-pipeline/predNactual.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;The model obviously managed to learn correlations between the Dow jones and the Nasdaq.  Nothing to impress your broker, but that is a basis on which building better prediction.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Sparrow version 0.2.0</title>
@@ -25,7 +158,7 @@ package&lt;/a&gt; and from the &lt;a href=&#34;https://github.com/ypg-data/sparr
 Data Bintray
 repository&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;release-notes:c39fc117d47053a4b538eba8f1c5a2fd&#34;&gt;Release notes&lt;/h2&gt;
+&lt;h2 id=&#34;release-notes&#34;&gt;Release notes&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Bump Spark version to 1.6.0&lt;/li&gt;
@@ -51,7 +184,7 @@ I mostly attended Data Science talks and below are the highlights.
 Some of this information also came from &lt;a href=&#34;http://www.meetup.com/Spark-NYC/events/228233164/&#34;&gt;NYC Spark Meetup&lt;/a&gt;,
 held on the first evening of the Conference.&lt;/p&gt;
 
-&lt;h1 id=&#34;spark-2-0:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark 2.0&lt;/h1&gt;
+&lt;h1 id=&#34;spark-2-0&#34;&gt;Spark 2.0&lt;/h1&gt;
 
 &lt;p&gt;Some of the main news about Spark 2.0 are&lt;/p&gt;
 
@@ -66,7 +199,7 @@ held on the first evening of the Conference.&lt;/p&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;tungsten:78333174891d79199dfc5d40590b6ccd&#34;&gt;Tungsten&lt;/h2&gt;
+&lt;h2 id=&#34;tungsten&#34;&gt;Tungsten&lt;/h2&gt;
 
 &lt;p&gt;the under-the-hood improver of memory and CPU efficiency for Spark applications.
 Project Tungsten was introduced in Spark 1.4.
@@ -88,7 +221,7 @@ See &lt;a href=&#34;https://databricks.com/blog/2015/04/28/project-tungsten-brin
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;spark-streaming:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark Streaming&lt;/h2&gt;
+&lt;h2 id=&#34;spark-streaming&#34;&gt;Spark Streaming&lt;/h2&gt;
 
 &lt;p&gt;Processing data in real time will be more integrated with batch applications
 with&lt;/p&gt;
@@ -107,12 +240,12 @@ with&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;pipelines:78333174891d79199dfc5d40590b6ccd&#34;&gt;Pipelines&lt;/h1&gt;
+&lt;h1 id=&#34;pipelines&#34;&gt;Pipelines&lt;/h1&gt;
 
 &lt;p&gt;The summit comprised lots of of pipeline talks, two examples shown below are particularly
 interesting for their similarities with our projects at Mediative.&lt;/p&gt;
 
-&lt;h2 id=&#34;netflix-distributed-time-travel-for-feature-generation:78333174891d79199dfc5d40590b6ccd&#34;&gt;Netflix Distributed Time Travel for Feature Generation&lt;/h2&gt;
+&lt;h2 id=&#34;netflix-distributed-time-travel-for-feature-generation&#34;&gt;Netflix Distributed Time Travel for Feature Generation&lt;/h2&gt;
 
 &lt;p&gt;The goal is build a time machine snapshots online services
 and uses the snapshot data offline to reconstruct the inputs
@@ -146,7 +279,7 @@ The batch API fetches the associated S3 location of the snapshot data from Cassa
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;real-time-data-pipelines-with-kafka:78333174891d79199dfc5d40590b6ccd&#34;&gt;Real Time Data Pipelines with Kafka&lt;/h2&gt;
+&lt;h2 id=&#34;real-time-data-pipelines-with-kafka&#34;&gt;Real Time Data Pipelines with Kafka&lt;/h2&gt;
 
 &lt;p&gt;If you have &lt;code&gt;n&lt;/code&gt; connectors, it is very likely that you&amp;rsquo;ll end up writing n*n connections.
 Here is a scary examples
@@ -189,7 +322,7 @@ Here is a scary examples
 
 &lt;p&gt;more information &lt;a href=&#34;https://spark-summit.org/east-2016/events/building-realtime-data-pipelines-with-kafka-connect-and-spark-streaming/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;machine-learning:78333174891d79199dfc5d40590b6ccd&#34;&gt;Machine Learning&lt;/h1&gt;
+&lt;h1 id=&#34;machine-learning&#34;&gt;Machine Learning&lt;/h1&gt;
 
 &lt;p&gt;There were many example with MLlib and SparkR and packages like &lt;strong&gt;Sparkling water&lt;/strong&gt; (H2O), an Open Sources with tools like customized DataFrames and Notebook.
 The incubating &lt;strong&gt;SystemML&lt;/strong&gt; (IBM) translates high-level (R or python)
@@ -197,7 +330,7 @@ aims to optimized code adapting to underlying input formats and physical data re
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;tensorspark:78333174891d79199dfc5d40590b6ccd&#34;&gt;TensorSpark&lt;/h2&gt;
+&lt;h2 id=&#34;tensorspark&#34;&gt;TensorSpark&lt;/h2&gt;
 
 &lt;p&gt;A distributed TensorFlow on Spark (Arimo, Inc.) motivated by TensorFlow (at the time)
 being only released for single-machine.
@@ -219,7 +352,7 @@ the driver is the parameter server: receiving gradients from workers and broadca
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;online-bidding:78333174891d79199dfc5d40590b6ccd&#34;&gt;Online bidding&lt;/h2&gt;
+&lt;h2 id=&#34;online-bidding&#34;&gt;Online bidding&lt;/h2&gt;
 
 &lt;p&gt;Of particular interest to Mediative, a talk about real time bidding over display ads with machine learning.&lt;/p&gt;
 
@@ -247,7 +380,7 @@ more information &lt;a href=&#34;https://spark-summit.org/east-2016/events/spark
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;visualization:78333174891d79199dfc5d40590b6ccd&#34;&gt;Visualization&lt;/h1&gt;
+&lt;h1 id=&#34;visualization&#34;&gt;Visualization&lt;/h1&gt;
 
 &lt;p&gt;Visualisation still mostly rely on (non-scalable) libraries although significant progress
 was shown with integration of ggplot2 with SparkR where 47% of API implemented
@@ -257,7 +390,7 @@ Meanwhile, better to filter your data and use a non-distributed library.&lt;/p&g
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;others:78333174891d79199dfc5d40590b6ccd&#34;&gt;Others&lt;/h1&gt;
+&lt;h1 id=&#34;others&#34;&gt;Others&lt;/h1&gt;
 
 &lt;p&gt;A quick mention of interesting subjects&lt;/p&gt;
 
@@ -280,7 +413,7 @@ Meanwhile, better to filter your data and use a non-distributed library.&lt;/p&g
 
 &lt;hr /&gt;
 
-&lt;h1 id=&#34;spark-community-edition-beta:78333174891d79199dfc5d40590b6ccd&#34;&gt;Spark community edition (beta)&lt;/h1&gt;
+&lt;h1 id=&#34;spark-community-edition-beta&#34;&gt;Spark community edition (beta)&lt;/h1&gt;
 
 &lt;p&gt;Finally, Databricks announced a free edition of their very nice service,
 this includes access to 6GB clusters.&lt;/p&gt;
@@ -307,7 +440,7 @@ this includes access to 6GB clusters.&lt;/p&gt;
       <guid>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
       <description>
 
-&lt;h2 id=&#34;download-and-build-zeppelin:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
+&lt;h2 id=&#34;download-and-build-zeppelin&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
 
 &lt;p&gt;Go to the &lt;a href=&#34;http://zeppelin.incubator.apache.org/download.html&#34;&gt;download page&lt;/a&gt;
 and get the latest source package.&lt;/p&gt;
@@ -338,7 +471,7 @@ enabled using the Maven profile corresponding to the Hadoop version found above:
 &lt;p&gt;Note we are assuming that you are using a custom Spark version as described in
 &lt;a href=&#34;https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;installing-zeppelin-on-the-edge-node:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
+&lt;h2 id=&#34;installing-zeppelin-on-the-edge-node&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
 
 &lt;p&gt;Copy the distribution to the edge node:&lt;/p&gt;
 
@@ -372,7 +505,7 @@ fi
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;manage-the-zeppelin-server:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Manage the Zeppelin Server&lt;/h2&gt;
+&lt;h2 id=&#34;manage-the-zeppelin-server&#34;&gt;Manage the Zeppelin Server&lt;/h2&gt;
 
 &lt;p&gt;To start the server run:&lt;/p&gt;
 
@@ -401,7 +534,7 @@ Mesos cluster. Also enjoy the new and improved
 &lt;a href=&#34;https://ypg-data.github.io/mesos-stack/&#34;&gt;documentation&lt;/a&gt; which is generated from
 the Ansible role files.&lt;/p&gt;
 
-&lt;h2 id=&#34;release-notes:f53641a3a79f315fc239526fa8f57943&#34;&gt;Release notes&lt;/h2&gt;
+&lt;h2 id=&#34;release-notes&#34;&gt;Release notes&lt;/h2&gt;
 
 &lt;p&gt;Improvements:&lt;/p&gt;
 

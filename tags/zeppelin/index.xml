@@ -17,7 +17,7 @@
       <guid>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
       <description>
 
-&lt;h2 id=&#34;download-and-build-zeppelin:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
+&lt;h2 id=&#34;download-and-build-zeppelin&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
 
 &lt;p&gt;Go to the &lt;a href=&#34;http://zeppelin.incubator.apache.org/download.html&#34;&gt;download page&lt;/a&gt;
 and get the latest source package.&lt;/p&gt;
@@ -48,7 +48,7 @@ enabled using the Maven profile corresponding to the Hadoop version found above:
 &lt;p&gt;Note we are assuming that you are using a custom Spark version as described in
 &lt;a href=&#34;https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;installing-zeppelin-on-the-edge-node:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
+&lt;h2 id=&#34;installing-zeppelin-on-the-edge-node&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
 
 &lt;p&gt;Copy the distribution to the edge node:&lt;/p&gt;
 
@@ -82,7 +82,7 @@ fi
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;manage-the-zeppelin-server:f7f4854e149c9cff12c48fbd2555be7b&#34;&gt;Manage the Zeppelin Server&lt;/h2&gt;
+&lt;h2 id=&#34;manage-the-zeppelin-server&#34;&gt;Manage the Zeppelin Server&lt;/h2&gt;
 
 &lt;p&gt;To start the server run:&lt;/p&gt;
 

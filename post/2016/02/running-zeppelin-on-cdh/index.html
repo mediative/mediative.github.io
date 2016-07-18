@@ -46,10 +46,21 @@
       
       
     
-    <meta name="generator" content="Hugo 0.16-DEV" />
+    <meta name="generator" content="Hugo 0.17-DEV" />
 
     <link rel="canonical" href="https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/" />
 
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-80920872-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
     
 
     
@@ -92,7 +103,9 @@
 
 
 
-<header class="main-header post-head" style="background-image: url(https://ypg-data.github.io/images/zeppelin.jpg)">
+  
+  <header class="main-header post-head" style="background-image: url(https://ypg-data.github.io/images/zeppelin.jpg)">
+  
   <nav class="main-nav overlay clearfix">
 
 
@@ -135,7 +148,7 @@
     <section class="post-content">
       
 
-<h2 id="download-and-build-zeppelin:f7f4854e149c9cff12c48fbd2555be7b">Download and Build Zeppelin</h2>
+<h2 id="download-and-build-zeppelin">Download and Build Zeppelin</h2>
 
 <p>Go to the <a href="http://zeppelin.incubator.apache.org/download.html">download page</a>
 and get the latest source package.</p>
@@ -166,7 +179,7 @@ enabled using the Maven profile corresponding to the Hadoop version found above:
 <p>Note we are assuming that you are using a custom Spark version as described in
 <a href="/post/2016/02/installing-a-custom-spark-version-on-cdh/">our previous post</a>.</p>
 
-<h2 id="installing-zeppelin-on-the-edge-node:f7f4854e149c9cff12c48fbd2555be7b">Installing Zeppelin on the Edge Node</h2>
+<h2 id="installing-zeppelin-on-the-edge-node">Installing Zeppelin on the Edge Node</h2>
 
 <p>Copy the distribution to the edge node:</p>
 
@@ -200,7 +213,7 @@ fi
 export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
 </code></pre>
 
-<h2 id="manage-the-zeppelin-server:f7f4854e149c9cff12c48fbd2555be7b">Manage the Zeppelin Server</h2>
+<h2 id="manage-the-zeppelin-server">Manage the Zeppelin Server</h2>
 
 <p>To start the server run:</p>
 

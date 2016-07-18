@@ -3,8 +3,12 @@
   
   <url>
     <loc>https://ypg-data.github.io/</loc>
-    <lastmod>2016-02-29T21:44:36-05:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2016-07-10T20:47:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ypg-data.github.io/post/2016/07/simple-spark-ml-pipeline/</loc>
+    <lastmod>2016-07-10T20:47:14-04:00</lastmod>
   </url>
   
   <url>
