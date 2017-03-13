@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on YPG Data</title>
-    <link>https://ypg-data.github.io/post/</link>
-    <description>Recent content in Posts on YPG Data</description>
+    <title>Post-rsses on Mediative</title>
+    <link>https://mediative.github.io/post/index.xml</link>
+    <description>Recent content in Post-rsses on Mediative</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jul 2016 20:47:14 -0400</lastBuildDate>
-    <atom:link href="https://ypg-data.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mediative.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Simple Spark ml pipeline</title>
-      <link>https://ypg-data.github.io/post/2016/07/simple-spark-ml-pipeline/</link>
+      <link>https://mediative.github.io/post/2016/07/simple-spark-ml-pipeline/</link>
       <pubDate>Sun, 10 Jul 2016 20:47:14 -0400</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/07/simple-spark-ml-pipeline/</guid>
+      <guid>https://mediative.github.io/post/2016/07/simple-spark-ml-pipeline/</guid>
       <description>
 
 &lt;p&gt;Mediative recently hosted a &lt;a href=&#34;http://www.meetup.com/Montreal-Apache-Spark-Meetup/events/231285569/&#34;&gt;Apache Spark Montreal Meetup&lt;/a&gt;&amp;rsquo;s project night where some of us decided to create a simple ML pipeline.
@@ -70,7 +70,7 @@ display(df.withColumn(&amp;quot;NDXTimes5&amp;quot;, $&amp;quot;NDX_Adjusted&amp
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/simple-ml-pipeline/djiNndx5.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/simple-ml-pipeline/djiNndx5.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -132,30 +132,29 @@ val pipeline = new Pipeline().setStages(steps)
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/simple-ml-pipeline/predNactual.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/simple-ml-pipeline/predNactual.png&#34; /&gt;
     
     
 &lt;/figure&gt;
 
 
-&lt;p&gt;Sure enough, the model managed to learn correlations between the Dow jones and the Nasdaq.
-Nothing to impress your broker, but it is a basis on which one can build better predictions.&lt;/p&gt;
+&lt;p&gt;The model obviously managed to learn correlations between the Dow jones and the Nasdaq.  Nothing to impress your broker, but that is a basis on which building better prediction.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Sparrow version 0.2.0</title>
-      <link>https://ypg-data.github.io/post/2016/02/sparrow-version-0.2.0/</link>
+      <link>https://mediative.github.io/post/2016/02/sparrow-version-0.2.0/</link>
       <pubDate>Mon, 29 Feb 2016 21:44:36 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/sparrow-version-0.2.0/</guid>
+      <guid>https://mediative.github.io/post/2016/02/sparrow-version-0.2.0/</guid>
       <description>
 
-&lt;p&gt;Sparrow version &lt;a href=&#34;https://github.com/ypg-data/sparrow/releases/tag/0.2.0&#34;&gt;0.2.0&lt;/a&gt;
+&lt;p&gt;Sparrow version &lt;a href=&#34;https://github.com/mediative/sparrow/releases/tag/0.2.0&#34;&gt;0.2.0&lt;/a&gt;
 is now available with updated dependency on Spark 1.6.0.&lt;/p&gt;
 
-&lt;p&gt;It&amp;rsquo;s both available as a &lt;a href=&#34;http://spark-packages.org/package/ypg-data/sparrow&#34;&gt;Spark
-package&lt;/a&gt; and from the &lt;a href=&#34;https://github.com/ypg-data/sparrow/blob/6589d0f3302520d284461e0aced147d9e14ddb7d/README.md#getting-started&#34;&gt;YPG
+&lt;p&gt;It&amp;rsquo;s both available as a &lt;a href=&#34;http://spark-packages.org/package/mediative/sparrow&#34;&gt;Spark
+package&lt;/a&gt; and from the &lt;a href=&#34;https://github.com/mediative/sparrow/blob/6589d0f3302520d284461e0aced147d9e14ddb7d/README.md#getting-started&#34;&gt;YPG
 Data Bintray
 repository&lt;/a&gt;.&lt;/p&gt;
 
@@ -171,10 +170,10 @@ repository&lt;/a&gt;.&lt;/p&gt;
     
     <item>
       <title>News from Spark Summit East</title>
-      <link>https://ypg-data.github.io/post/2016/02/news-from-spark-summit-east/</link>
+      <link>https://mediative.github.io/post/2016/02/news-from-spark-summit-east/</link>
       <pubDate>Sun, 28 Feb 2016 21:38:37 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/news-from-spark-summit-east/</guid>
+      <guid>https://mediative.github.io/post/2016/02/news-from-spark-summit-east/</guid>
       <description>
 
 &lt;p&gt;Mediative is building a data pipeline on top of Spark
@@ -262,7 +261,7 @@ The batch API fetches the associated S3 location of the snapshot data from Cassa
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/netflixSnapshotAPI.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/netflixSnapshotAPI.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -287,7 +286,7 @@ Here is a scary examples
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/conplexPipeline.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/conplexPipeline.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -301,7 +300,7 @@ Here is a scary examples
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/kafka2modes.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/kafka2modes.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -313,7 +312,7 @@ Here is a scary examples
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/kafkaDataIntegration.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/kafkaDataIntegration.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -343,7 +342,7 @@ the driver is the parameter server: receiving gradients from workers and broadca
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/tensorSparkArchitecture.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/tensorSparkArchitecture.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -360,7 +359,7 @@ the driver is the parameter server: receiving gradients from workers and broadca
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/AdbidPipeline.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/AdbidPipeline.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -372,7 +371,7 @@ A very nice outcome was the most effective model varies from campaign to campaig
 &lt;p&gt;
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/AdModelCompare.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/AdModelCompare.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -435,10 +434,10 @@ this includes access to 6GB clusters.&lt;/p&gt;
     
     <item>
       <title>Running Zeppelin on CDH</title>
-      <link>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</link>
+      <link>https://mediative.github.io/post/2016/02/running-zeppelin-on-cdh/</link>
       <pubDate>Fri, 26 Feb 2016 14:46:46 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
+      <guid>https://mediative.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
       <description>
 
 &lt;h2 id=&#34;download-and-build-zeppelin&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
@@ -470,7 +469,7 @@ enabled using the Maven profile corresponding to the Hadoop version found above:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note we are assuming that you are using a custom Spark version as described in
-&lt;a href=&#34;https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://mediative.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;installing-zeppelin-on-the-edge-node&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
 
@@ -522,17 +521,17 @@ export HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-/etc/hadoop/conf}
     
     <item>
       <title>Mesos Stack version 0.4.0</title>
-      <link>https://ypg-data.github.io/post/2016/02/mesos-stack-version-0.4.0/</link>
+      <link>https://mediative.github.io/post/2016/02/mesos-stack-version-0.4.0/</link>
       <pubDate>Wed, 24 Feb 2016 14:25:03 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/mesos-stack-version-0.4.0/</guid>
+      <guid>https://mediative.github.io/post/2016/02/mesos-stack-version-0.4.0/</guid>
       <description>
 
-&lt;p&gt;Version &lt;a href=&#34;https://github.com/ypg-data/mesos-stack/releases/tag/0.4.0&#34;&gt;0.4.0&lt;/a&gt; has
+&lt;p&gt;Version &lt;a href=&#34;https://github.com/mediative/mesos-stack/releases/tag/0.4.0&#34;&gt;0.4.0&lt;/a&gt; has
 been released of our Mesos stack. It updates Marathon-LB to use an upstream
 released version and adds a new GlusterFS role to distribute files across the
 Mesos cluster. Also enjoy the new and improved
-&lt;a href=&#34;https://ypg-data.github.io/mesos-stack/&#34;&gt;documentation&lt;/a&gt; which is generated from
+&lt;a href=&#34;https://mediative.github.io/mesos-stack/&#34;&gt;documentation&lt;/a&gt; which is generated from
 the Ansible role files.&lt;/p&gt;
 
 &lt;h2 id=&#34;release-notes&#34;&gt;Release notes&lt;/h2&gt;
@@ -552,10 +551,10 @@ date.&lt;/li&gt;
     
     <item>
       <title>Installing a Custom Spark Version on CDH</title>
-      <link>https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</link>
+      <link>https://mediative.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</link>
       <pubDate>Sat, 13 Feb 2016 19:54:46 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</guid>
+      <guid>https://mediative.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/</guid>
       <description>&lt;p&gt;Since Spark can be run as a YARN application it is possible to run a Spark
 version other than the one provided by the Cloudera platform (CDH). This
 document lists the instructions for how to compile a specific Spark version

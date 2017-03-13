@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mesos Stack on YPG Data</title>
-    <link>https://ypg-data.github.io/tags/mesos-stack/</link>
-    <description>Recent content in Mesos Stack on YPG Data</description>
+    <title>Mediative</title>
+    <link>https://mediative.github.io/tags/mesos-stack/index.xml</link>
+    <description>Recent content on Mediative</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Feb 2016 14:25:03 -0500</lastBuildDate>
-    <atom:link href="https://ypg-data.github.io/tags/mesos-stack/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mediative.github.io/tags/mesos-stack/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mesos Stack version 0.4.0</title>
-      <link>https://ypg-data.github.io/post/2016/02/mesos-stack-version-0.4.0/</link>
+      <link>https://mediative.github.io/post/2016/02/mesos-stack-version-0.4.0/</link>
       <pubDate>Wed, 24 Feb 2016 14:25:03 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/mesos-stack-version-0.4.0/</guid>
+      <guid>https://mediative.github.io/post/2016/02/mesos-stack-version-0.4.0/</guid>
       <description>
 
-&lt;p&gt;Version &lt;a href=&#34;https://github.com/ypg-data/mesos-stack/releases/tag/0.4.0&#34;&gt;0.4.0&lt;/a&gt; has
+&lt;p&gt;Version &lt;a href=&#34;https://github.com/mediative/mesos-stack/releases/tag/0.4.0&#34;&gt;0.4.0&lt;/a&gt; has
 been released of our Mesos stack. It updates Marathon-LB to use an upstream
 released version and adds a new GlusterFS role to distribute files across the
 Mesos cluster. Also enjoy the new and improved
-&lt;a href=&#34;https://ypg-data.github.io/mesos-stack/&#34;&gt;documentation&lt;/a&gt; which is generated from
+&lt;a href=&#34;https://mediative.github.io/mesos-stack/&#34;&gt;documentation&lt;/a&gt; which is generated from
 the Ansible role files.&lt;/p&gt;
 
 &lt;h2 id=&#34;release-notes&#34;&gt;Release notes&lt;/h2&gt;

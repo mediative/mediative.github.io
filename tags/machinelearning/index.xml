@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Machinelearning on YPG Data</title>
-    <link>https://ypg-data.github.io/tags/machinelearning/</link>
-    <description>Recent content in Machinelearning on YPG Data</description>
+    <title>Mediative</title>
+    <link>https://mediative.github.io/tags/machinelearning/index.xml</link>
+    <description>Recent content on Mediative</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 28 Feb 2016 21:38:37 -0500</lastBuildDate>
-    <atom:link href="https://ypg-data.github.io/tags/machinelearning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mediative.github.io/tags/machinelearning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>News from Spark Summit East</title>
-      <link>https://ypg-data.github.io/post/2016/02/news-from-spark-summit-east/</link>
+      <link>https://mediative.github.io/post/2016/02/news-from-spark-summit-east/</link>
       <pubDate>Sun, 28 Feb 2016 21:38:37 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/news-from-spark-summit-east/</guid>
+      <guid>https://mediative.github.io/post/2016/02/news-from-spark-summit-east/</guid>
       <description>
 
 &lt;p&gt;Mediative is building a data pipeline on top of Spark
@@ -102,7 +101,7 @@ The batch API fetches the associated S3 location of the snapshot data from Cassa
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/netflixSnapshotAPI.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/netflixSnapshotAPI.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -127,7 +126,7 @@ Here is a scary examples
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/conplexPipeline.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/conplexPipeline.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -141,7 +140,7 @@ Here is a scary examples
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/kafka2modes.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/kafka2modes.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -153,7 +152,7 @@ Here is a scary examples
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/kafkaDataIntegration.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/kafkaDataIntegration.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -183,7 +182,7 @@ the driver is the parameter server: receiving gradients from workers and broadca
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/tensorSparkArchitecture.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/tensorSparkArchitecture.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -200,7 +199,7 @@ the driver is the parameter server: receiving gradients from workers and broadca
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/AdbidPipeline.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/AdbidPipeline.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -212,7 +211,7 @@ A very nice outcome was the most effective model varies from campaign to campaig
 &lt;p&gt;
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/spark-summit-east-2016/AdModelCompare.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/spark-summit-east-2016/AdModelCompare.png&#34; /&gt;
     
     
 &lt;/figure&gt;

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mllib on YPG Data</title>
-    <link>https://ypg-data.github.io/tags/mllib/</link>
-    <description>Recent content in Mllib on YPG Data</description>
+    <title>Mediative</title>
+    <link>https://mediative.github.io/tags/mllib/index.xml</link>
+    <description>Recent content on Mediative</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Jul 2016 20:47:14 -0400</lastBuildDate>
-    <atom:link href="https://ypg-data.github.io/tags/mllib/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mediative.github.io/tags/mllib/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Simple Spark ml pipeline</title>
-      <link>https://ypg-data.github.io/post/2016/07/simple-spark-ml-pipeline/</link>
+      <link>https://mediative.github.io/post/2016/07/simple-spark-ml-pipeline/</link>
       <pubDate>Sun, 10 Jul 2016 20:47:14 -0400</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/07/simple-spark-ml-pipeline/</guid>
+      <guid>https://mediative.github.io/post/2016/07/simple-spark-ml-pipeline/</guid>
       <description>
 
 &lt;p&gt;Mediative recently hosted a &lt;a href=&#34;http://www.meetup.com/Montreal-Apache-Spark-Meetup/events/231285569/&#34;&gt;Apache Spark Montreal Meetup&lt;/a&gt;&amp;rsquo;s project night where some of us decided to create a simple ML pipeline.
@@ -70,7 +69,7 @@ display(df.withColumn(&amp;quot;NDXTimes5&amp;quot;, $&amp;quot;NDX_Adjusted&amp
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/simple-ml-pipeline/djiNndx5.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/simple-ml-pipeline/djiNndx5.png&#34; /&gt;
     
     
 &lt;/figure&gt;
@@ -132,14 +131,13 @@ val pipeline = new Pipeline().setStages(steps)
 
 &lt;figure &gt;
     
-        &lt;img src=&#34;https://ypg-data.github.io/images/simple-ml-pipeline/predNactual.png&#34; /&gt;
+        &lt;img src=&#34;https://mediative.github.io/images/simple-ml-pipeline/predNactual.png&#34; /&gt;
     
     
 &lt;/figure&gt;
 
 
-&lt;p&gt;Sure enough, the model managed to learn correlations between the Dow jones and the Nasdaq.
-Nothing to impress your broker, but it is a basis on which one can build better predictions.&lt;/p&gt;
+&lt;p&gt;The model obviously managed to learn correlations between the Dow jones and the Nasdaq.  Nothing to impress your broker, but that is a basis on which building better prediction.&lt;/p&gt;
 </description>
     </item>
     

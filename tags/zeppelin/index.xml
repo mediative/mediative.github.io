@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Zeppelin on YPG Data</title>
-    <link>https://ypg-data.github.io/tags/zeppelin/</link>
-    <description>Recent content in Zeppelin on YPG Data</description>
+    <title>Mediative</title>
+    <link>https://mediative.github.io/tags/zeppelin/index.xml</link>
+    <description>Recent content on Mediative</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Feb 2016 14:46:46 -0500</lastBuildDate>
-    <atom:link href="https://ypg-data.github.io/tags/zeppelin/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://mediative.github.io/tags/zeppelin/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Running Zeppelin on CDH</title>
-      <link>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</link>
+      <link>https://mediative.github.io/post/2016/02/running-zeppelin-on-cdh/</link>
       <pubDate>Fri, 26 Feb 2016 14:46:46 -0500</pubDate>
       
-      <guid>https://ypg-data.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
+      <guid>https://mediative.github.io/post/2016/02/running-zeppelin-on-cdh/</guid>
       <description>
 
 &lt;h2 id=&#34;download-and-build-zeppelin&#34;&gt;Download and Build Zeppelin&lt;/h2&gt;
@@ -46,7 +45,7 @@ enabled using the Maven profile corresponding to the Hadoop version found above:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note we are assuming that you are using a custom Spark version as described in
-&lt;a href=&#34;https://ypg-data.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://mediative.github.io/post/2016/02/installing-a-custom-spark-version-on-cdh/&#34;&gt;our previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;installing-zeppelin-on-the-edge-node&#34;&gt;Installing Zeppelin on the Edge Node&lt;/h2&gt;
 
